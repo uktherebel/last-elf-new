@@ -1,0 +1,71 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 900" width="1440" height="900" aria-labelledby="title desc">
+  <title id="title">Sword and Scabbard for Scroll Animation</title>
+  <desc id="desc">Layered sword and scabbard groups for GSAP ScrollTrigger animation. Move the sword group on the Y axis to slide it into the scabbard.</desc>
+
+  <defs>
+    <linearGradient id="bladeGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#e6eef7"/>
+      <stop offset="35%" stop-color="#cfd8e4"/>
+      <stop offset="65%" stop-color="#a9b4c4"/>
+      <stop offset="100%" stop-color="#dce6f3"/>
+    </linearGradient>
+    <linearGradient id="hiltGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#1c1a1f"/>
+      <stop offset="100%" stop-color="#403d46"/>
+    </linearGradient>
+    <linearGradient id="gold" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#d8b36c"/>
+      <stop offset="100%" stop-color="#b07f2d"/>
+    </linearGradient>
+    <linearGradient id="scabbardGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#120f16"/>
+      <stop offset="100%" stop-color="#261f2d"/>
+    </linearGradient>
+    <pattern id="scabbardTexture" width="12" height="12" patternUnits="userSpaceOnUse">
+      <rect width="12" height="12" fill="url(#scabbardGrad)" />
+      <path d="M0 12 L12 0 M-3 9 L3 15 M9 -3 L15 3" stroke="#2f2836" stroke-width="0.6" opacity="0.35"/>
+    </pattern>
+    <clipPath id="scabbardMouth">
+      <rect x="690" y="290" width="60" height="220" rx="18" ry="18"/>
+    </clipPath>
+  </defs>
+
+  <!-- Optional background plane -->
+  <g id="bg">
+    <rect x="0" y="0" width="1440" height="900" fill="#0b0a0f"/>
+    <radialGradient id="bgGlow" cx="50%" cy="45%" r="55%">
+      <stop offset="0%" stop-color="#182033" stop-opacity="0.55"/>
+      <stop offset="100%" stop-color="#0b0a0f" stop-opacity="0.9"/>
+    </radialGradient>
+    <rect x="0" y="0" width="1440" height="900" fill="url(#bgGlow)" />
+  </g>
+
+  <!-- Scabbard group -->
+  <g id="scabbard">
+    <rect x="690" y="260" width="60" height="360" rx="22" ry="22" fill="url(#scabbardTexture)" stroke="#3b3241" stroke-width="4"/>
+    <rect x="686" y="248" width="68" height="36" rx="10" ry="10" fill="url(#gold)" stroke="#7a5720" stroke-width="3"/>
+    <rect x="686" y="600" width="68" height="36" rx="10" ry="10" fill="url(#gold)" stroke="#7a5720" stroke-width="3"/>
+    <rect x="700" y="276" width="40" height="36" rx="8" ry="8" fill="#0f0d13" opacity="0.6"/>
+  </g>
+
+  <!-- Sword group (animate this on Y) -->
+  <g id="sword" clip-path="url(#scabbardMouth)">
+    <!-- Blade -->
+    <rect x="704" y="70" width="32" height="480" rx="6" ry="6" fill="url(#bladeGrad)" stroke="#c7d2df" stroke-width="2"/>
+    <rect x="719" y="70" width="2" height="480" fill="#ffffff" opacity="0.35"/>
+    <!-- Fuller -->
+    <rect x="714" y="96" width="12" height="430" rx="4" ry="4" fill="#b8c2cf" opacity="0.55"/>
+    <!-- Crossguard -->
+    <rect x="672" y="530" width="96" height="16" rx="6" ry="6" fill="url(#hiltGrad)" stroke="#4c4654" stroke-width="2"/>
+    <rect x="696" y="522" width="48" height="12" rx="4" ry="4" fill="url(#gold)" />
+    <!-- Grip -->
+    <rect x="706" y="546" width="20" height="80" rx="6" ry="6" fill="#1d1a21" stroke="#2c2731" stroke-width="2"/>
+    <path d="M706 556 h20 M706 572 h20 M706 588 h20 M706 604 h20" stroke="#3d3944" stroke-width="3" stroke-linecap="round" opacity="0.65"/>
+    <!-- Pommel -->
+    <circle cx="716" cy="634" r="14" fill="url(#gold)" stroke="#7a5720" stroke-width="3"/>
+    <circle cx="716" cy="634" r="6" fill="#0f0d13" opacity="0.7"/>
+  </g>
+
+  <!-- Highlight rim on scabbard mouth to sell the clip -->
+  <rect x="690" y="290" width="60" height="220" rx="18" ry="18" fill="none" stroke="#5b4a64" stroke-width="3" opacity="0.6"/>
+</svg>
