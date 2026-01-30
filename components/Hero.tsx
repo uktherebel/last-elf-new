@@ -53,9 +53,6 @@ export default function Hero() {
           priority
           draggable={false}
         />
-        {/* Cinematic overlays */}
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(0,0,0,0)_0%,rgba(0,0,0,0.5)_60%,rgba(0,0,0,0.8)_100%)] pointer-events-none" />
-        <div className="absolute inset-0 bg-gradient-to-b from-black/65 via-transparent to-black pointer-events-none" />
       </div>
 
       {/* Left Socials Sidebar */}
@@ -80,7 +77,7 @@ export default function Hero() {
               <RedditIcon className="w-5 h-5" />
             </a>
             <a
-              href="#"
+              href="https://youtube.com/@thelastelf-f3t?si=ZcNR0S7TBLHfb144"
               className="hover:text-white transition-transform transition-colors duration-200 hover:scale-125"
             >
               <Youtube className="w-5 h-5" />
