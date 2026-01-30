@@ -79,6 +79,7 @@ export default function Hero() {
             <a
               href="https://youtube.com/@thelastelf-f3t?si=ZcNR0S7TBLHfb144"
               className="hover:text-white transition-transform transition-colors duration-200 hover:scale-125"
+              target="_blank"
             >
               <Youtube className="w-5 h-5" />
             </a>
