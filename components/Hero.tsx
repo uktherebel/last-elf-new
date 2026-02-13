@@ -123,6 +123,21 @@ export default function Hero() {
           />
         </motion.div>
 
+        {/* Clarity Lines */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.2 }}
+          className="flex flex-col items-center gap-2 mb-8"
+        >
+          <h2 className="text-xl md:text-2xl font-bold text-red-500 uppercase tracking-widest">
+            Launching first on iOS + macOS
+          </h2>
+          <p className="text-neutral-400 text-sm md:text-base tracking-wider uppercase">
+            Offline, story-first, third-person dark fantasy ARPG
+          </p>
+        </motion.div>
+
         {/* CTA Buttons */}
         <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
@@ -132,78 +147,21 @@ export default function Hero() {
         >
           <a
             href="#"
-            className="py-4 px-8 bg-red-900/80 hover:bg-red-800 border-y border-red-500/50 text-white font-heading font-bold text-xl transition-all tracking-widest uppercase flex items-center justify-center gap-2 group backdrop-blur-sm shadow-[0_0_15px_rgba(220,38,38,0.3)]"
+            className="py-4 px-8 bg-white hover:bg-neutral-200 text-black font-heading font-bold text-xl transition-all tracking-widest uppercase flex items-center justify-center gap-2 group shadow-[0_0_20px_rgba(255,255,255,0.3)]"
           >
-            <span className="text-red-200 group-hover:text-white">♦</span> Play
-            PC Now{" "}
-            <span className="text-red-200 group-hover:text-white">♦</span>
+            <Apple className="w-6 h-6" />
+            Pre-order on App Store (soon)
           </a>
 
-          {/* Mobile Download with store badges on hover */}
-          <div className="relative inline-flex group">
-            <a
-              href="#"
-              className="py-4 px-8 bg-neutral-200 hover:bg-white border-y border-neutral-400 text-black font-heading font-bold text-xl transition-all tracking-widest uppercase flex items-center justify-center gap-2 backdrop-blur-sm"
-            >
-              <span className="text-neutral-500">❖</span> Mobile Download{" "}
-              <span className="text-neutral-500">❖</span>
-            </a>
-
-            {/* Store badges - appear to the right on hover */}
-            <div className="pointer-events-none absolute left-full top-1/2 -translate-y-1/2 translate-x-4 flex flex-col gap-2 opacity-0 transition-all duration-300 z-50 group-hover:pointer-events-auto group-hover:opacity-100 group-hover:translate-x-6 group-focus-within:pointer-events-auto group-focus-within:opacity-100 group-focus-within:translate-x-6">
-              {/* App Store Badge */}
-              <a
-                href="#"
-                className="block hover:scale-105 transition-transform"
-              >
-                <div className="bg-black rounded-lg px-4 py-2 flex items-center gap-3 min-w-[160px]">
-                  <Apple className="w-8 h-8 text-white" />
-                  <div className="text-white text-left">
-                    <div className="text-[10px] leading-tight">
-                      Download on the
-                    </div>
-                    <div className="text-lg font-semibold leading-tight">
-                      App Store
-                    </div>
-                  </div>
-                </div>
-              </a>
-              {/* Google Play Badge */}
-              <a
-                href="#"
-                className="block hover:scale-105 transition-transform"
-              >
-                <div className="bg-black rounded-lg px-4 py-2 flex items-center gap-3 min-w-[160px]">
-                  <div className="w-8 h-8 flex items-center justify-center">
-                    <svg viewBox="0 0 24 24" className="w-6 h-6" fill="none">
-                      <path
-                        d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 0 1-.61-.92V2.734a1 1 0 0 1 .609-.92z"
-                        fill="#00D6FF"
-                      />
-                      <path
-                        d="M17.556 8.236l-3.764 3.764 3.764 3.764 4.252-2.43c.773-.442.773-1.226 0-1.668l-4.252-2.43z"
-                        fill="#FFD400"
-                      />
-                      <path
-                        d="M3.609 1.814L13.792 12l3.764-3.764L6.39.376a1.158 1.158 0 0 0-1.103.048 1.002 1.002 0 0 0-.118.073l-.086.055.526 1.262z"
-                        fill="#32E685"
-                      />
-                      <path
-                        d="M13.792 12L3.609 22.186l.086.055a1.002 1.002 0 0 0 .118.073c.336.193.742.212 1.103.048l11.166-5.86L13.792 12z"
-                        fill="#F43249"
-                      />
-                    </svg>
-                  </div>
-                  <div className="text-white text-left">
-                    <div className="text-[10px] leading-tight">GET IT ON</div>
-                    <div className="text-lg font-semibold leading-tight">
-                      Google Play
-                    </div>
-                  </div>
-                </div>
-              </a>
-            </div>
-          </div>
+          {/* Secondary Button */}
+          <a
+            href="https://youtube.com/@thelastelf-f3t?si=ZcNR0S7TBLHfb144"
+            target="_blank"
+            className="py-4 px-8 bg-transparent border border-neutral-600 hover:border-white hover:bg-white/5 text-neutral-300 hover:text-white font-heading font-bold text-xl transition-all tracking-widest uppercase flex items-center justify-center gap-2 backdrop-blur-sm"
+          >
+            <Youtube className="w-6 h-6" />
+            Watch trailer
+          </a>
         </motion.div>
 
         {/* Platform Icons */}
@@ -213,15 +171,20 @@ export default function Hero() {
           transition={{ duration: 0.5, delay: 0.6 }}
           className="flex items-center justify-center gap-8 md:gap-12 text-neutral-300"
         >
-          <a
-            href="#"
-            className="flex items-center gap-2 hover:text-white transition-colors cursor-pointer group"
+          <div
+            className="flex items-center gap-2 transition-colors group opacity-50 cursor-default"
+            title="Page coming soon"
           >
-            <Gamepad2 className="w-8 h-8 group-hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.5)]" />
-            <span className="font-bold tracking-wider hidden sm:block">
-              STEAM
-            </span>
-          </a>
+            <Gamepad2 className="w-8 h-8" />
+            <div className="flex flex-col text-left">
+              <span className="font-bold tracking-wider hidden sm:block">
+                STEAM
+              </span>
+              <span className="text-[10px] tracking-tight text-neutral-500">
+                RELEASE LATER
+              </span>
+            </div>
+          </div>
           <a
             href="#"
             className="flex items-center gap-2 hover:text-white transition-colors cursor-pointer group"

@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { MoveRight } from "lucide-react";
+import { MoveRight, Apple } from "lucide-react";
 
 export default function Footer() {
     return (
@@ -14,16 +14,13 @@ export default function Footer() {
                             href="#"
                             className="px-8 py-4 bg-white text-black font-bold rounded-sm tracking-wider uppercase hover:bg-neutral-200 transition-colors inline-flex items-center gap-2"
                         >
-                            Play Free on iOS <MoveRight className="w-5 h-5" />
+                            <Apple className="w-5 h-5" /> Pre-order on App Store (soon)
                         </a>
-                        <a
-                            href="#"
-                            className="px-8 py-4 bg-transparent border border-neutral-700 text-neutral-300 font-bold rounded-sm tracking-wider uppercase hover:bg-neutral-800 transition-colors"
-                            target="_blank"
-                            rel="noreferrer"
+                        <div
+                            className="px-8 py-4 bg-transparent border border-neutral-700 text-neutral-400 font-bold rounded-sm tracking-wider uppercase cursor-default"
                         >
-                            Wishlist on Steam
-                        </a>
+                            Steam release later (page coming soon)
+                        </div>
                     </div>
                 </div>
 

@@ -6,8 +6,8 @@ export default function PlatformStrip() {
                      App Store
                 </span>
                 <span className="hidden w-1 h-1 bg-neutral-700 rounded-full sm:block" />
-                <span className="flex items-center gap-2 hover:text-white transition-colors cursor-pointer">
-                    Steam
+                <span className="flex items-center gap-2 opacity-50 cursor-default">
+                    Steam release later (page coming soon)
                 </span>
                 <span className="hidden w-1 h-1 bg-neutral-700 rounded-full sm:block" />
                 <span className="flex items-center gap-2 hover:text-white transition-colors cursor-pointer">
