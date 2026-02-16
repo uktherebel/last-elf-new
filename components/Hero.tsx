@@ -107,7 +107,7 @@ export default function Hero() {
       </div>
 
       {/* Content */}
-      <div className="relative z-10 container mx-auto px-4 text-center flex flex-col items-center justify-center h-full pb-12">
+      <div className="relative z-10 container mx-auto px-4 text-center flex flex-col items-center justify-center h-full pb-24">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -130,9 +130,6 @@ export default function Hero() {
           transition={{ duration: 0.8, delay: 0.2 }}
           className="flex flex-col items-center gap-2 mb-8"
         >
-          <h2 className="text-xl md:text-2xl font-bold text-red-500 uppercase tracking-widest">
-            Launching first on iOS + macOS
-          </h2>
           <p className="text-neutral-400 text-sm md:text-base tracking-wider uppercase">
             Offline, story-first, third-person dark fantasy ARPG
           </p>
@@ -215,7 +212,7 @@ export default function Hero() {
         </motion.div>
       </div>
 
-      <div className="absolute bottom-4 left-0 right-0 text-center z-20">
+      <div className="absolute bottom-2 left-0 right-0 text-center z-20">
         <p className="text-neutral-500 text-xs tracking-[0.3em] uppercase animate-pulse">
           Scroll down for more
         </p>
