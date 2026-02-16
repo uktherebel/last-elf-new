@@ -107,7 +107,7 @@ export default function Hero() {
       </div>
 
       {/* Content */}
-      <div className="relative z-10 container mx-auto px-4 text-center flex flex-col items-center pt-20">
+      <div className="relative z-10 container mx-auto px-4 text-center flex flex-col items-center justify-center h-full pb-12">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -119,7 +119,7 @@ export default function Hero() {
             alt="The Last Elf Logo"
             width={576}
             height={576}
-            className="mx-auto drop-shadow-2xl w-auto h-auto max-h-[576px]"
+            className="mx-auto drop-shadow-2xl w-auto h-auto max-h-[40vh] md:max-h-[576px]"
           />
         </motion.div>
 
@@ -215,7 +215,7 @@ export default function Hero() {
         </motion.div>
       </div>
 
-      <div className="absolute bottom-10 left-0 right-0 text-center z-20">
+      <div className="absolute bottom-4 left-0 right-0 text-center z-20">
         <p className="text-neutral-500 text-xs tracking-[0.3em] uppercase animate-pulse">
           Scroll down for more
         </p>
