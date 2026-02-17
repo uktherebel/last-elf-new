@@ -83,9 +83,10 @@ export default function Hero() {
               <DiscordIcon className="w-5 h-5" />
             </a>
             <a
-              href="#"
+              href="https://www.reddit.com/user/the-last-elf/"
               className="hover:text-white transition-transform transition-colors duration-200 hover:scale-125"
               title="Reddit"
+              target="_blank"
             >
               <RedditIcon className="w-5 h-5" />
             </a>
