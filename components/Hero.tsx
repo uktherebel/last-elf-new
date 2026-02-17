@@ -237,6 +237,9 @@ export default function Hero() {
         </motion.div>
       </div>
 
+      {/* Bottom gradient for smooth transition */}
+      <div className="absolute bottom-0 left-0 right-0 h-48 bg-gradient-to-b from-transparent to-black z-10 pointer-events-none" />
+
       <div className="absolute bottom-2 left-0 right-0 text-center z-20">
         <p className="text-neutral-500 text-xs tracking-[0.3em] uppercase animate-pulse">
           Scroll down for more
