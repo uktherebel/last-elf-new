@@ -76,19 +76,12 @@ export default function Hero() {
           </span>
           <div className="flex flex-col gap-6 text-neutral-400">
             <a
-              href="#"
+              href="https://www.tiktok.com/@lastelfgame"
               className="hover:text-white transition-transform transition-colors duration-200 hover:scale-125"
-              title="Discord"
-            >
-              <DiscordIcon className="w-5 h-5" />
-            </a>
-            <a
-              href="https://www.reddit.com/user/the-last-elf/"
-              className="hover:text-white transition-transform transition-colors duration-200 hover:scale-125"
-              title="Reddit"
               target="_blank"
+              title="TikTok"
             >
-              <RedditIcon className="w-5 h-5" />
+              <TikTokIcon className="w-5 h-5" />
             </a>
             <a
               href="https://youtube.com/@thelastelf-f3t?si=ZcNR0S7TBLHfb144"
@@ -97,6 +90,14 @@ export default function Hero() {
               target="_blank"
             >
               <Youtube className="w-5 h-5" />
+            </a>
+            <a
+              href="https://www.reddit.com/user/the-last-elf/"
+              className="hover:text-white transition-transform transition-colors duration-200 hover:scale-125"
+              title="Reddit"
+              target="_blank"
+            >
+              <RedditIcon className="w-5 h-5" />
             </a>
             <a
               href="https://www.instagram.com/lastelfgame/"
@@ -109,22 +110,23 @@ export default function Hero() {
             <a
               href="#"
               className="hover:text-white transition-transform transition-colors duration-200 hover:scale-125"
+              title="Discord"
+            >
+              <DiscordIcon className="w-5 h-5" />
+            </a>
+            <a
+              href="#"
+              className="hover:text-white transition-transform transition-colors duration-200 hover:scale-125"
+              title="Twitter"
             >
               <Twitter className="w-5 h-5" />
             </a>
             <a
               href="#"
               className="hover:text-white transition-transform transition-colors duration-200 hover:scale-125"
+              title="Facebook"
             >
               <Facebook className="w-5 h-5" />
-            </a>
-            <a
-              href="https://www.tiktok.com/@lastelfgame"
-              className="hover:text-white transition-transform transition-colors duration-200 hover:scale-125"
-              target="_blank"
-              title="TikTok"
-            >
-              <TikTokIcon className="w-5 h-5" />
             </a>
           </div>
           <div className="h-24 w-[1px] bg-neutral-700 mt-8" />
