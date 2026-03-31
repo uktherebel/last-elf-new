@@ -10,15 +10,37 @@ export default function Footer() {
                 {/* Final Call to Action */}
                 <div className="mb-16">
                     <h2 className="text-4xl font-heading text-white mb-6">The Hunt Awaits</h2>
-                    <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-                        <a
-                            href="#"
-                            className="px-8 py-4 bg-white text-black font-bold rounded-sm tracking-wider uppercase hover:bg-neutral-200 transition-colors inline-flex items-center gap-3"
-                        >
-                            <Image src="/store-logos/app-store-svgrepo-com.svg" alt="App Store" width={24} height={24} className="w-6 h-6" /> Download on App Store
-                        </a>
+                    <div className="flex flex-col lg:flex-row gap-6 justify-center items-center">
+                        {/* CTA Buttons row */}
+                        <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-6">
+                            {/* App Store Badge */}
+                            <a
+                                href="https://apps.apple.com/us/app/the-last-elf-dark-fantasy-rpg/id6758931119"
+                                target="_blank"
+                                className="flex items-center justify-center gap-3 bg-white hover:bg-gray-100 border-2 border-black rounded-xl px-4 py-2 text-black transition-transform hover:scale-105 font-sans min-w-[170px]"
+                            >
+                                <Image src="/store-icons/Apple.svg" alt="Apple App Store" width={32} height={32} className="w-8 h-8 -mt-1" />
+                                <div className="flex flex-col items-start justify-center text-left">
+                                    <span className="text-[11px] leading-tight font-medium tracking-wide">Download on the</span>
+                                    <span className="text-[22px] font-semibold tracking-tight leading-none">App Store</span>
+                                </div>
+                            </a>
+
+                            {/* Google Play Badge */}
+                            <a
+                                href="https://play.google.com/store/apps/details?id=com.conteza.games.thelastelf"
+                                target="_blank"
+                                className="flex items-center justify-center gap-3 bg-white hover:bg-gray-100 border-2 border-black rounded-xl px-4 py-2 text-black transition-transform hover:scale-105 font-sans min-w-[170px]"
+                            >
+                                <Image src="/store-icons/Playstore.svg" alt="Google Play" width={30} height={30} className="w-[28px] h-[28px]" />
+                                <div className="flex flex-col items-start justify-center text-left">
+                                    <span className="text-[11px] leading-tight font-medium uppercase tracking-wide cursor-default">GET IT ON</span>
+                                    <span className="text-[22px] font-semibold tracking-tight leading-none">Google Play</span>
+                                </div>
+                            </a>
+                        </div>
                         <div
-                            className="px-8 py-4 bg-transparent border border-neutral-700 text-neutral-400 font-bold rounded-sm tracking-wider uppercase cursor-default"
+                            className="px-8 py-3.5 bg-transparent border border-neutral-700 text-neutral-400 font-bold rounded-xl tracking-wider uppercase cursor-default whitespace-nowrap"
                         >
                             Steam release later (page coming soon)
                         </div>

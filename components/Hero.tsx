@@ -165,23 +165,33 @@ export default function Hero() {
           transition={{ duration: 0.5, delay: 0.4 }}
           className="flex flex-col md:flex-row gap-4 items-center justify-center mb-12 w-full max-w-2xl"
         >
-          <a
-            href="https://apps.apple.com/us/app/the-last-elf-dark-fantasy-rpg/id6758931119"
-            className="py-4 px-8 bg-white hover:bg-neutral-200 text-black font-heading font-bold text-xl transition-all tracking-widest uppercase flex items-center justify-center gap-2 group shadow-[0_0_20px_rgba(255,255,255,0.3)]"
-          >
-            <Image src="/store-logos/app-store-svgrepo-com.svg" alt="App Store" width={24} height={24} className="w-6 h-6" />
-            Download on App Store
-          </a>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            {/* App Store Badge */}
+            <a
+              href="https://apps.apple.com/us/app/the-last-elf-dark-fantasy-rpg/id6758931119"
+              target="_blank"
+              className="flex items-center justify-center gap-3 bg-white hover:bg-gray-100 border-2 border-black rounded-xl px-4 py-2 text-black transition-transform hover:scale-105 font-sans min-w-[170px]"
+            >
+              <Image src="/store-icons/Apple.svg" alt="Apple App Store" width={32} height={32} className="w-8 h-8 -mt-1" />
+              <div className="flex flex-col items-start justify-center text-left">
+                <span className="text-[11px] leading-tight font-medium tracking-wide">Download on the</span>
+                <span className="text-[22px] font-semibold tracking-tight leading-none">App Store</span>
+              </div>
+            </a>
 
-          {/* Secondary Button */}
-          <a
-            href="https://youtube.com/@thelastelf-f3t?si=ZcNR0S7TBLHfb144"
-            target="_blank"
-            className="py-4 px-8 bg-transparent border border-neutral-600 hover:border-white hover:bg-white/5 text-neutral-300 hover:text-white font-heading font-bold text-xl transition-all tracking-widest uppercase flex items-center justify-center gap-2 backdrop-blur-sm"
-          >
-            <Youtube className="w-6 h-6" />
-            Watch trailer
-          </a>
+            {/* Google Play Badge */}
+            <a
+              href="https://play.google.com/store/apps/details?id=com.conteza.games.thelastelf"
+              target="_blank"
+              className="flex items-center justify-center gap-3 bg-white hover:bg-gray-100 border-2 border-black rounded-xl px-4 py-2 text-black transition-transform hover:scale-105 font-sans min-w-[170px]"
+            >
+              <Image src="/store-icons/Playstore.svg" alt="Google Play" width={30} height={30} className="w-[28px] h-[28px]" />
+              <div className="flex flex-col items-start justify-center text-left">
+                <span className="text-[11px] leading-tight font-medium uppercase tracking-wide cursor-default">GET IT ON</span>
+                <span className="text-[22px] font-semibold tracking-tight leading-none">Google Play</span>
+              </div>
+            </a>
+          </div>
         </motion.div>
 
         {/* Platform Icons */}
@@ -236,6 +246,23 @@ export default function Hero() {
             <span className="font-bold tracking-wider hidden sm:block">
               Android
             </span>
+          </a>
+        </motion.div>
+
+        {/* Watch Trailer Button */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.5, delay: 0.8 }}
+          className="mt-12 flex items-center justify-center"
+        >
+          <a
+            href="https://youtube.com/@thelastelf-f3t?si=ZcNR0S7TBLHfb144"
+            target="_blank"
+            className="py-4 px-8 bg-transparent border border-neutral-600 hover:border-white hover:bg-white/5 text-neutral-300 hover:text-white font-heading font-bold text-xl transition-all tracking-widest uppercase flex items-center justify-center gap-2 backdrop-blur-sm"
+          >
+            <Youtube className="w-6 h-6" />
+            Watch trailer
           </a>
         </motion.div>
       </div>
