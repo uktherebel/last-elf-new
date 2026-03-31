@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Cinzel, Inter } from "next/font/google";
 import { siteName, siteUrl } from "@/lib/seo";
+import Header from "@/components/Header";
 import "./globals.css";
 
 const cinzel = Cinzel({
@@ -73,6 +74,7 @@ export default function RootLayout({
       <body
         className={`${cinzel.variable} ${inter.variable} antialiased bg-background text-foreground`}
       >
+        <Header />
         {children}
       </body>
     </html>

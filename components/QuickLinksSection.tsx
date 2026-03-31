@@ -7,12 +7,22 @@ export default function QuickLinksSection() {
         <h2 className="mb-6 text-center text-3xl font-heading text-white">
           Platforms and Support
         </h2>
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
           <Link
             href="/ios"
+            target="_blank"
+            rel="noopener noreferrer"
             className="rounded-md border border-white/10 bg-neutral-950 p-4 text-center text-neutral-200 transition-colors hover:border-white/30 hover:text-white"
           >
-            iOS and macOS Page
+            iOS and macOS
+          </Link>
+          <Link
+            href="/android"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="rounded-md border border-white/10 bg-neutral-950 p-4 text-center text-neutral-200 transition-colors hover:border-white/30 hover:text-white"
+          >
+            Android
           </Link>
           <Link
             href="/support"

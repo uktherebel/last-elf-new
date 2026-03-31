@@ -300,22 +300,26 @@ export default function Hero() {
                 </a>
                 <span
                   className="opacity-50 cursor-not-allowed"
-                  title="Discord (coming soon)"
+                  title="Discord"
                 >
                   <DiscordIcon className="w-5 h-5" />
                 </span>
-                <span
-                  className="opacity-50 cursor-not-allowed"
-                  title="Twitter (coming soon)"
+                <a
+                  href="https://x.com/lastelfgame"
+                  className="hover:text-white transition-transform transition-colors duration-200 hover:scale-125"
+                  title="Twitter/X"
+                  target="_blank"
                 >
                   <Twitter className="w-5 h-5" />
-                </span>
-                <span
-                  className="opacity-50 cursor-not-allowed"
-                  title="Facebook (coming soon)"
+                </a>
+                <a
+                  href="https://www.facebook.com/lastelfgame"
+                  className="hover:text-white transition-transform transition-colors duration-200 hover:scale-125"
+                  title="Facebook"
+                  target="_blank"
                 >
                   <Facebook className="w-5 h-5" />
-                </span>
+                </a>
               </div>
               <div className="h-24 w-[1px] bg-neutral-700 mt-8" />
             </div>
@@ -415,7 +419,7 @@ export default function Hero() {
                   />
                   <div className="flex flex-col items-start justify-center text-left">
                     <span className="text-[11px] leading-tight font-medium uppercase tracking-wide">
-                      COMING SOON ON
+                      ON
                     </span>
                     <span className="text-[22px] font-semibold tracking-tight leading-none">
                       Steam

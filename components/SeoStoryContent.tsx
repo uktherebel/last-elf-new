@@ -32,7 +32,7 @@ const slides = [
     title: "Arena Battles and Survival Trials",
     description:
       "Enter brutal arena fights where enemy waves and elite threats push your combat mastery to the limit.",
-    image: "/crousel-imgs/arena.png",
+    image: "/crousel-imgs/arena-v2.png",
   },
 ];
 

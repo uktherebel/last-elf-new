@@ -1,9 +1,23 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "iOS and Android",
+  title: "The Last Elf | iOS and macOS",
   description:
-    "Watch the official trailer and access The Last Elf download links for iOS and Android.",
+    "The Last Elf is a dark fantasy third-person Action RPG for iOS and macOS with story-driven adventure, sword combat, monster hunting, and demon boss battles.",
+  keywords: [
+    "demon",
+    "hunter",
+    "elf",
+    "monster",
+    "boss",
+    "dungeon",
+    "offline",
+    "elden ring",
+    "story",
+    "adventure",
+    "sword",
+    "hack and slash",
+  ],
   alternates: {
     canonical: "/ios",
   },

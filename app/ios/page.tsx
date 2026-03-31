@@ -2,12 +2,10 @@
 
 import { motion } from "framer-motion";
 import Link from "next/link";
+import Image from "next/image";
 import {
     Youtube,
     Instagram,
-    Facebook,
-    Twitter,
-    Apple,
     Monitor,
 } from "lucide-react";
 
@@ -37,14 +35,41 @@ const RedditIcon = ({ className }: { className?: string }) => (
     </svg>
 );
 
+const TikTokIcon = ({ className }: { className?: string }) => (
+    <svg
+        role="img"
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+        fill="currentColor"
+        className={className}
+    >
+        <title>TikTok</title>
+        <path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z" />
+    </svg>
+);
+
 export default function IosPage() {
+    const tags = [
+        "demon",
+        "hunter",
+        "elf",
+        "monster",
+        "boss",
+        "dungeon",
+        "offline",
+        "elden ring",
+        "story",
+        "adventure",
+        "sword",
+        "hack and slash",
+    ];
+
     return (
-        <main className="min-h-screen bg-black text-white selection:bg-neutral-700 selection:text-white flex flex-col items-center justify-center p-4">
-            <div className="w-full max-w-4xl mx-auto flex flex-col items-center gap-12">
+        <main className="min-h-screen bg-black text-white selection:bg-neutral-700 selection:text-white p-4 md:p-6">
+            <div className="w-full max-w-4xl mx-auto flex flex-col items-center gap-12 py-8 md:py-12">
                 {/* Header/Logo */}
                 <Link href="/" className="opacity-80 hover:opacity-100 transition-opacity">
                     <span className="sr-only">Home</span>
-                    {/* Fallback text if logo isn't available or just to keep it simple as user asked for "only Trailer, Pre-order soon, badges, social links" */}
                     <h1 className="text-2xl font-bold tracking-[0.2em] uppercase text-neutral-400">The Last Elf</h1>
                 </Link>
 
@@ -61,10 +86,9 @@ export default function IosPage() {
                     <div className="pointer-events-none absolute inset-0 rounded-xl ring-1 ring-white/5" />
                 </div>
 
-                {/* Pre-order Content */}
                 <div className="text-center flex flex-col items-center gap-6">
                     <h2 className="text-3xl md:text-5xl font-heading font-bold text-white uppercase tracking-wider">
-                        Pre-order Soon
+                        iOS and macOS
                     </h2>
 
                     <motion.div
@@ -73,57 +97,174 @@ export default function IosPage() {
                         transition={{ duration: 0.5, delay: 0.2 }}
                         className="flex items-center justify-center gap-8 text-neutral-300"
                     >
-                        <div className="flex items-center gap-2">
-                            <Apple className="w-8 h-8" />
+                        <a
+                            href="https://apps.apple.com/us/app/the-last-elf-dark-fantasy-rpg/id6758931119"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="flex items-center gap-2 hover:text-white transition-colors"
+                            title="Download on iOS"
+                        >
+                            <Image
+                                src="/store-icons/Apple.svg"
+                                alt="Apple App Store"
+                                width={32}
+                                height={32}
+                                className="h-8 w-8 brightness-0 invert"
+                            />
                             <span className="font-bold tracking-wider text-xl">iOS</span>
-                        </div>
-                        <div className="flex items-center gap-2">
+                        </a>
+                        <span
+                            className="flex items-center gap-2 opacity-50 cursor-not-allowed"
+                            title="macOS (not released yet)"
+                        >
                             <Monitor className="w-8 h-8" />
-                            <span className="font-bold tracking-wider text-xl">macOS</span>
-                        </div>
+                            <span className="font-bold tracking-wider text-xl">
+                                macOS
+                            </span>
+                        </span>
                     </motion.div>
                 </div>
+
+                <section className="w-full rounded-2xl border border-white/10 bg-white/[0.03] p-6 md:p-10">
+                    <div className="flex flex-wrap gap-2">
+                        {tags.map((tag) => (
+                            <span
+                                key={tag}
+                                className="rounded-full border border-white/15 px-3 py-1 text-xs uppercase tracking-wider text-neutral-300"
+                            >
+                                {tag}
+                            </span>
+                        ))}
+                    </div>
+
+                    <div className="mt-8 space-y-8 text-neutral-200">
+                        <p>
+                            The Last Elf is a dark fantasy Action RPG inspired by ancient mythology.
+                            Played from a third-person perspective, the game follows the journey of the
+                            final surviving Elf in a world on the brink of extinction. Built as a
+                            focused single-player action-adventure, the experience emphasizes immersion,
+                            atmosphere, and meaningful progression over filler content.
+                        </p>
+
+                        <div className="space-y-3">
+                            <h3 className="text-xl md:text-2xl font-bold text-white">Game Story</h3>
+                            <p>
+                                The world has fallen into darkness. Ruthless demons and monstrous
+                                creatures have invaded the land, seeking to destroy the elven and human
+                                realms.
+                            </p>
+                            <p>
+                                The ancient protectors of humans, the Elves, were caught off guard in a
+                                brutal assault and were wiped out, their sacred realms reduced to ashes.
+                                Against all odds, one Elf survived.
+                            </p>
+                            <p>
+                                You are The Last Elf, the final hope of a broken world. Armed with
+                                special powers and unyielding courage, you must rise from the ruins,
+                                hunt down the invading monsters, and confront the demonic forces
+                                threatening humanity&apos;s existence. The fate of the world now rests in
+                                your hands.
+                            </p>
+                        </div>
+
+                        <div className="space-y-3">
+                            <h3 className="text-xl md:text-2xl font-bold text-white">
+                                Combat-Driven Action RPG Gameplay
+                            </h3>
+                            <p>
+                                At its core, The Last Elf is a combat-first third-person Action RPG
+                                built around responsive controls and skill-based encounters. Engage in
+                                real-time battles where precision, timing, and adaptability are key.
+                            </p>
+                            <p>
+                                Improve your fighting approach using the weapons you collect on the way
+                                and face a wide variety of enemies, each designed to challenge different
+                                playstyles. From relentless monster hordes to powerful demon bosses,
+                                every fight is designed to feel impactful.
+                            </p>
+                        </div>
+
+                        <div className="space-y-3">
+                            <h3 className="text-xl md:text-2xl font-bold text-white">
+                                Battles and Abilities
+                            </h3>
+                            <p>
+                                The game&apos;s experience is fast and skill-based. Fight monsters and
+                                powerful demon bosses using your Elf&apos;s abilities, timing, and strategy.
+                                Customize your playstyle by changing your weapons from inventory and
+                                adapt to different enemies and challenges. Every encounter feels
+                                meaningful and keeps the action exciting.
+                            </p>
+                        </div>
+
+                        <div className="space-y-3">
+                            <h3 className="text-xl md:text-2xl font-bold text-white">
+                                Cinematic and Immersive Experience
+                            </h3>
+                            <p>
+                                The game delivers a cinematic presentation supported by an atmospheric
+                                visual style and sound design. Dynamic lighting, dark fantasy
+                                environments, and carefully paced moments create a constant sense of
+                                tension and immersion.
+                            </p>
+                            <p>
+                                Every element, from combat animations to world design, works together to
+                                pull players deeper into the experience, making the journey of The Last
+                                Elf feel personal and intense.
+                            </p>
+                        </div>
+
+                        <p className="text-white font-semibold">
+                            Download the Last Elf now to play and beat the demons from conquering the
+                            world!
+                        </p>
+                    </div>
+                </section>
 
                 {/* Social Links */}
                 <div className="flex gap-8 text-neutral-400 mt-4">
                     <span
                         className="opacity-50 cursor-not-allowed"
-                        title="Discord (coming soon)"
+                        title="Discord"
                     >
                         <DiscordIcon className="w-6 h-6" />
                     </span>
-                    <span
-                        className="opacity-50 cursor-not-allowed"
-                        title="Reddit (coming soon)"
+                    <a
+                        href="https://www.tiktok.com/@lastelfgame"
+                        className="hover:text-white transition-transform transition-colors duration-200 hover:scale-125"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        title="TikTok"
+                    >
+                        <TikTokIcon className="w-6 h-6" />
+                    </a>
+                    <a
+                        href="https://www.reddit.com/user/the-last-elf/"
+                        className="hover:text-white transition-transform transition-colors duration-200 hover:scale-125"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        title="Reddit"
                     >
                         <RedditIcon className="w-6 h-6" />
-                    </span>
+                    </a>
                     <a
                         href="https://youtube.com/@thelastelf-f3t?si=ZcNR0S7TBLHfb144"
                         className="hover:text-white transition-transform transition-colors duration-200 hover:scale-125"
                         target="_blank"
+                        rel="noopener noreferrer"
                         title="YouTube"
                     >
                         <Youtube className="w-6 h-6" />
                     </a>
-                    <span
-                        className="opacity-50 cursor-not-allowed"
-                        title="Instagram (coming soon)"
+                    <a
+                        href="https://www.instagram.com/lastelfgame/"
+                        className="hover:text-white transition-transform transition-colors duration-200 hover:scale-125"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        title="Instagram"
                     >
                         <Instagram className="w-6 h-6" />
-                    </span>
-                    <span
-                        className="opacity-50 cursor-not-allowed"
-                        title="Twitter (coming soon)"
-                    >
-                        <Twitter className="w-6 h-6" />
-                    </span>
-                    <span
-                        className="opacity-50 cursor-not-allowed"
-                        title="Facebook (coming soon)"
-                    >
-                        <Facebook className="w-6 h-6" />
-                    </span>
+                    </a>
                 </div>
             </div>
         </main>
