@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import {
   motion,
   useScroll,
@@ -74,11 +74,11 @@ export default function Hero() {
   const currentFrame = (index: number) =>
     `/portal-frames/${index.toString().padStart(4, "0")}.jpg`;
 
-  const [images, setImages] = useState<HTMLImageElement[]>([]);
+  const imagesRef = useRef<HTMLImageElement[]>([]);
 
   const renderFrame = (
     index: number,
-    imgArray: HTMLImageElement[] = images,
+    imgArray: HTMLImageElement[] = imagesRef.current,
   ) => {
     if (!canvasRef.current || !imgArray[index]) return;
     const canvas = canvasRef.current;
@@ -114,16 +114,21 @@ export default function Hero() {
       img.src = currentFrame(i);
       loadedImages.push(img);
     }
-    setImages(loadedImages);
+    imagesRef.current = loadedImages;
 
-    // Render the very first frame to the canvas immediately when it loads
-    loadedImages[0].onload = () => {
+    // Render the first frame immediately (or when it finishes loading)
+    if (loadedImages[0]?.complete) {
       renderFrame(0, loadedImages);
-    };
+    } else if (loadedImages[0]) {
+      loadedImages[0].onload = () => {
+        renderFrame(0, loadedImages);
+      };
+    }
   }, []);
 
   // Sync scroll progress to canvas renders
   useMotionValueEvent(scrollYProgress, "change", (latest) => {
+    const images = imagesRef.current;
     if (images.length === 0) return;
     const frameIndex = Math.min(
       images.length - 1,
@@ -135,9 +140,11 @@ export default function Hero() {
   // Keep canvas sharp and correctly sized on resize
   useEffect(() => {
     const handleResize = () => {
+      const images = imagesRef.current;
       if (canvasRef.current) {
         canvasRef.current.width = window.innerWidth;
         canvasRef.current.height = window.innerHeight;
+        if (images.length === 0) return;
         // Redraw current frame to match new dimensions
         renderFrame(
           Math.min(
@@ -153,7 +160,7 @@ export default function Hero() {
 
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
-  }, [images, scrollYProgress]);
+  }, [scrollYProgress]);
 
   return (
     <section ref={containerRef} className="relative h-[400vh] w-full bg-black">
@@ -171,7 +178,7 @@ export default function Hero() {
         {/* Fallback Image behind Canvas (visible only before frames load) */}
         <div className="absolute inset-0 z-[-1] select-none pointer-events-none">
           <Image
-            src="/RPG-Game-Capsules-22-January-2026/MainCapsule1.jpg"
+            src="/portal-frames/0001.jpg"
             alt="The Last Elf Background"
             fill
             className="object-cover"
