@@ -76,22 +76,6 @@ export default function Hero() {
 
   const [images, setImages] = useState<HTMLImageElement[]>([]);
 
-  useEffect(() => {
-    // Preload all frames
-    const loadedImages: HTMLImageElement[] = [];
-    for (let i = 1; i <= frameCount; i++) {
-      const img = new window.Image();
-      img.src = currentFrame(i);
-      loadedImages.push(img);
-    }
-    setImages(loadedImages);
-
-    // Render the very first frame to the canvas immediately when it loads
-    loadedImages[0].onload = () => {
-      renderFrame(0, loadedImages);
-    };
-  }, []);
-
   const renderFrame = (
     index: number,
     imgArray: HTMLImageElement[] = images,
@@ -121,6 +105,22 @@ export default function Hero() {
     ctx.clearRect(0, 0, cw, ch);
     ctx.drawImage(img, x, y, w, h);
   };
+
+  useEffect(() => {
+    // Preload all frames
+    const loadedImages: HTMLImageElement[] = [];
+    for (let i = 1; i <= frameCount; i++) {
+      const img = new window.Image();
+      img.src = currentFrame(i);
+      loadedImages.push(img);
+    }
+    setImages(loadedImages);
+
+    // Render the very first frame to the canvas immediately when it loads
+    loadedImages[0].onload = () => {
+      renderFrame(0, loadedImages);
+    };
+  }, []);
 
   // Sync scroll progress to canvas renders
   useMotionValueEvent(scrollYProgress, "change", (latest) => {
