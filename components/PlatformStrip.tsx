@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 export default function PlatformStrip() {
     return (
         <div className="w-full bg-neutral-900 border-y border-neutral-800 py-4">
@@ -7,6 +9,7 @@ export default function PlatformStrip() {
                 </span>
                 <span className="hidden w-1 h-1 bg-neutral-700 rounded-full sm:block" />
                 <span className="flex items-center gap-2 opacity-50 cursor-default">
+                    <Image src="/store-logos/steam-svgrepo-com.svg" alt="Steam" width={16} height={16} className="w-4 h-4 grayscale" />
                     Steam release later (page coming soon)
                 </span>
                 <span className="hidden w-1 h-1 bg-neutral-700 rounded-full sm:block" />

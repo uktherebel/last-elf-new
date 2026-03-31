@@ -1,6 +1,7 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { useEffect, useRef, useState } from "react";
+import { motion, useScroll, useTransform, useMotionValueEvent } from "framer-motion";
 import Image from "next/image";
 import {
   Youtube,
@@ -50,230 +51,335 @@ const TikTokIcon = ({ className }: { className?: string }) => (
 );
 
 export default function Hero() {
+  const containerRef = useRef<HTMLElement>(null);
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+  
+  // Create a scroll trigger
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start start", "end end"]
+  });
+
+  // Calculate opacity for fading out the text elements.
+  // We want it to be fully visible at 0%, and fade to 0 opacity by 30% of the scroll.
+  const contentOpacity = useTransform(scrollYProgress, [0, 0.3], [1, 0]);
+
+  // Frame loading and rendering
+  const frameCount = 109;
+  const currentFrame = (index: number) => `/portal-frames/${index.toString().padStart(4, '0')}.jpg`;
+  
+  const [images, setImages] = useState<HTMLImageElement[]>([]);
+
+  useEffect(() => {
+    // Preload all frames
+    const loadedImages: HTMLImageElement[] = [];
+    for (let i = 1; i <= frameCount; i++) {
+      const img = new window.Image();
+      img.src = currentFrame(i);
+      loadedImages.push(img);
+    }
+    setImages(loadedImages);
+
+    // Render the very first frame to the canvas immediately when it loads
+    loadedImages[0].onload = () => {
+      renderFrame(0, loadedImages);
+    };
+  }, []);
+
+  const renderFrame = (index: number, imgArray: HTMLImageElement[] = images) => {
+    if (!canvasRef.current || !imgArray[index]) return;
+    const canvas = canvasRef.current;
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
+    
+    const img = imgArray[index];
+    
+    // Ensure image has actual dimensions before trying to draw
+    if (!img.naturalWidth) return;
+    
+    // Mimic 'object-fit: cover' logic for the canvas
+    const cw = canvas.width;
+    const ch = canvas.height;
+    const iw = img.naturalWidth;
+    const ih = img.naturalHeight;
+    
+    const scale = Math.max(cw / iw, ch / ih);
+    const w = iw * scale;
+    const h = ih * scale;
+    const x = (cw - w) / 2;
+    const y = (ch - h) / 2;
+    
+    ctx.clearRect(0, 0, cw, ch);
+    ctx.drawImage(img, x, y, w, h);
+  };
+
+  // Sync scroll progress to canvas renders
+  useMotionValueEvent(scrollYProgress, "change", (latest) => {
+    if (images.length === 0) return;
+    const frameIndex = Math.min(
+      images.length - 1,
+      Math.floor(latest * frameCount)
+    );
+    renderFrame(frameIndex);
+  });
+
+  // Keep canvas sharp and correctly sized on resize
+  useEffect(() => {
+    const handleResize = () => {
+      if (canvasRef.current) {
+        canvasRef.current.width = window.innerWidth;
+        canvasRef.current.height = window.innerHeight;
+        // Redraw current frame to match new dimensions
+        renderFrame(Math.min(
+          images.length - 1,
+          Math.floor(scrollYProgress.get() * frameCount)
+        ));
+      }
+    };
+    
+    // Initial size setup
+    handleResize();
+    
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, [images, scrollYProgress]);
+
   return (
-    <section className="relative h-screen w-full flex items-center justify-center bg-black">
-      {/* Background Image */}
-      <div className="absolute inset-0 z-0 select-none overflow-hidden">
-        <Image
-          src="/RPG-Game-Capsules-22-January-2026/MainCapsule1.jpg"
-          alt="The Last Elf Background"
-          fill
-          className="object-cover"
-          priority
-          draggable={false}
+    <section ref={containerRef} className="relative h-[400vh] w-full bg-black">
+      {/* 
+        This div sticks to the top of the viewport for the duration of the 400vh scroll.
+        Inside it, the actual content fades while the canvas scrubs the video frames.
+      */}
+      <div className="sticky top-0 h-screen w-full overflow-hidden">
+      
+        {/* Canvas Background */}
+        <canvas 
+          ref={canvasRef} 
+          className="absolute inset-0 z-0 w-full h-full object-cover" 
         />
-      </div>
 
-      {/* Left Socials Sidebar */}
-      <div className="absolute left-8 bottom-0 top-0 flex flex-col justify-center items-center z-20 hidden md:flex">
-        <div className="flex flex-col gap-6 items-center">
-          <span className="text-neutral-400 text-xs font-bold tracking-[0.3em] uppercase -rotate-90 whitespace-nowrap mb-8">
-            Follow Us
-          </span>
-          <div className="flex flex-col gap-6 text-neutral-400">
-            <a
-              href="https://www.tiktok.com/@lastelfgame"
-              className="hover:text-white transition-transform transition-colors duration-200 hover:scale-125"
-              target="_blank"
-              title="TikTok"
-            >
-              <TikTokIcon className="w-5 h-5" />
-            </a>
-            <a
-              href="https://youtube.com/@thelastelf-f3t?si=ZcNR0S7TBLHfb144"
-              className="hover:text-white transition-transform transition-colors duration-200 hover:scale-125"
-              title="YouTube"
-              target="_blank"
-            >
-              <Youtube className="w-5 h-5" />
-            </a>
-            <a
-              href="https://www.reddit.com/user/the-last-elf/"
-              className="hover:text-white transition-transform transition-colors duration-200 hover:scale-125"
-              title="Reddit"
-              target="_blank"
-            >
-              <RedditIcon className="w-5 h-5" />
-            </a>
-            <a
-              href="https://www.instagram.com/lastelfgame/"
-              className="hover:text-white transition-transform transition-colors duration-200 hover:scale-125"
-              title="Instagram"
-              target="_blank"
-            >
-              <Instagram className="w-5 h-5" />
-            </a>
-            <a
-              href="#"
-              className="hover:text-white transition-transform transition-colors duration-200 hover:scale-125"
-              title="Discord"
-            >
-              <DiscordIcon className="w-5 h-5" />
-            </a>
-            <a
-              href="#"
-              className="hover:text-white transition-transform transition-colors duration-200 hover:scale-125"
-              title="Twitter"
-            >
-              <Twitter className="w-5 h-5" />
-            </a>
-            <a
-              href="#"
-              className="hover:text-white transition-transform transition-colors duration-200 hover:scale-125"
-              title="Facebook"
-            >
-              <Facebook className="w-5 h-5" />
-            </a>
-          </div>
-          <div className="h-24 w-[1px] bg-neutral-700 mt-8" />
-        </div>
-      </div>
-
-      {/* Content */}
-      <div className="relative z-10 container mx-auto px-4 text-center flex flex-col items-center justify-center h-full pb-24">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
-          className="mb-8"
-        >
+        {/* Fallback Image behind Canvas (visible only before frames load) */}
+        <div className="absolute inset-0 z-[-1] select-none pointer-events-none">
           <Image
-            src="/RPGGame-Logo-Icon-MainMenu/RPGGame-Icon1.png"
-            alt="The Last Elf Logo"
-            width={576}
-            height={576}
-            className="mx-auto drop-shadow-2xl w-auto h-auto max-h-[40vh] md:max-h-[576px]"
+            src="/RPG-Game-Capsules-22-January-2026/MainCapsule1.jpg"
+            alt="The Last Elf Background"
+            fill
+            className="object-cover"
+            priority
+            draggable={false}
           />
-        </motion.div>
+        </div>
 
-        {/* Clarity Lines */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-          className="flex flex-col items-center gap-2 mb-8"
-        >
-          <p className="text-neutral-400 text-sm md:text-base tracking-wider uppercase">
-            Offline, story-first, third-person dark fantasy ARPG
-          </p>
-        </motion.div>
-
-        {/* CTA Buttons */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.9 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.5, delay: 0.4 }}
-          className="flex flex-col md:flex-row gap-4 items-center justify-center mb-12 w-full max-w-2xl"
-        >
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            {/* App Store Badge */}
-            <a
-              href="https://apps.apple.com/us/app/the-last-elf-dark-fantasy-rpg/id6758931119"
-              target="_blank"
-              className="flex items-center justify-center gap-3 bg-white hover:bg-gray-100 border-2 border-black rounded-xl px-4 py-2 text-black transition-transform hover:scale-105 font-sans min-w-[170px]"
-            >
-              <Image src="/store-icons/Apple.svg" alt="Apple App Store" width={32} height={32} className="w-8 h-8 -mt-1" />
-              <div className="flex flex-col items-start justify-center text-left">
-                <span className="text-[11px] leading-tight font-medium tracking-wide">Download on the</span>
-                <span className="text-[22px] font-semibold tracking-tight leading-none">App Store</span>
-              </div>
-            </a>
-
-            {/* Google Play Badge */}
-            <a
-              href="https://play.google.com/store/apps/details?id=com.conteza.games.thelastelf"
-              target="_blank"
-              className="flex items-center justify-center gap-3 bg-white hover:bg-gray-100 border-2 border-black rounded-xl px-4 py-2 text-black transition-transform hover:scale-105 font-sans min-w-[170px]"
-            >
-              <Image src="/store-icons/Playstore.svg" alt="Google Play" width={30} height={30} className="w-[28px] h-[28px]" />
-              <div className="flex flex-col items-start justify-center text-left">
-                <span className="text-[11px] leading-tight font-medium uppercase tracking-wide cursor-default">GET IT ON</span>
-                <span className="text-[22px] font-semibold tracking-tight leading-none">Google Play</span>
-              </div>
-            </a>
-          </div>
-        </motion.div>
-
-        {/* Platform Icons */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.6 }}
-          className="flex items-center justify-center gap-8 md:gap-12 text-neutral-300"
-        >
-          <div
-            className="flex items-center gap-2 transition-colors group opacity-50 cursor-default"
-            title="Page coming soon"
-          >
-            <Image src="/store-logos/steam-svgrepo-com.svg" alt="Steam" width={32} height={32} className="w-8 h-8 grayscale transition-all duration-300" />
-            <div className="flex flex-col text-left">
-              <span className="font-bold tracking-wider hidden sm:block">
-                STEAM
+        {/* Dynamic Foreground Content, fades using contentOpacity */}
+        <motion.div style={{ opacity: contentOpacity }} className="relative z-10 w-full h-full">
+        
+          {/* Left Socials Sidebar */}
+          <div className="absolute left-8 bottom-0 top-0 flex flex-col justify-center items-center z-20 hidden md:flex">
+            <div className="flex flex-col gap-6 items-center">
+              <span className="text-neutral-400 text-xs font-bold tracking-[0.3em] uppercase -rotate-90 whitespace-nowrap mb-8">
+                Follow Us
               </span>
-              <span className="text-[10px] tracking-tight text-neutral-500">
-                RELEASE LATER
-              </span>
+              <div className="flex flex-col gap-6 text-neutral-400">
+                <a
+                  href="https://www.tiktok.com/@lastelfgame"
+                  className="hover:text-white transition-transform transition-colors duration-200 hover:scale-125"
+                  target="_blank"
+                  title="TikTok"
+                >
+                  <TikTokIcon className="w-5 h-5" />
+                </a>
+                <a
+                  href="https://youtube.com/@thelastelf-f3t?si=ZcNR0S7TBLHfb144"
+                  className="hover:text-white transition-transform transition-colors duration-200 hover:scale-125"
+                  title="YouTube"
+                  target="_blank"
+                >
+                  <Youtube className="w-5 h-5" />
+                </a>
+                <a
+                  href="https://www.reddit.com/user/the-last-elf/"
+                  className="hover:text-white transition-transform transition-colors duration-200 hover:scale-125"
+                  title="Reddit"
+                  target="_blank"
+                >
+                  <RedditIcon className="w-5 h-5" />
+                </a>
+                <a
+                  href="https://www.instagram.com/lastelfgame/"
+                  className="hover:text-white transition-transform transition-colors duration-200 hover:scale-125"
+                  title="Instagram"
+                  target="_blank"
+                >
+                  <Instagram className="w-5 h-5" />
+                </a>
+                <a
+                  href="#"
+                  className="hover:text-white transition-transform transition-colors duration-200 hover:scale-125"
+                  title="Discord"
+                >
+                  <DiscordIcon className="w-5 h-5" />
+                </a>
+                <a
+                  href="#"
+                  className="hover:text-white transition-transform transition-colors duration-200 hover:scale-125"
+                  title="Twitter"
+                >
+                  <Twitter className="w-5 h-5" />
+                </a>
+                <a
+                  href="#"
+                  className="hover:text-white transition-transform transition-colors duration-200 hover:scale-125"
+                  title="Facebook"
+                >
+                  <Facebook className="w-5 h-5" />
+                </a>
+              </div>
+              <div className="h-24 w-[1px] bg-neutral-700 mt-8" />
             </div>
           </div>
-          <a
-            href="#"
-            className="flex items-center gap-2 hover:text-white transition-colors cursor-pointer group"
-            target="_blank"
 
-          >
-            <Image src="/store-logos/app-store-svgrepo-com.svg" alt="macOS" width={32} height={32} className="w-8 h-8 grayscale group-hover:grayscale-0 transition-all duration-300 group-hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.5)]" />
-            <span className="font-bold tracking-wider hidden sm:block">
-              macOS
-            </span>
-          </a>
-          <a
-            href="https://apps.apple.com/us/app/the-last-elf-dark-fantasy-rpg/id6758931119"
-            className="flex items-center gap-2 hover:text-white transition-colors cursor-pointer group"
-            target="_blank"
-          >
-            <Image src="/store-logos/app-store-svgrepo-com.svg" alt="iOS" width={32} height={32} className="w-8 h-8 grayscale group-hover:grayscale-0 transition-all duration-300 group-hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.5)]" />
-            <span className="font-bold tracking-wider hidden sm:block">
-              iOS
-            </span>
-          </a>
-          <a
-            href="https://play.google.com/store/apps/details?id=com.conteza.games.thelastelf"
-            className="flex items-center gap-2 hover:text-white transition-colors cursor-pointer group"
-            target="_blank"
+          {/* Center Content */}
+          <div className="container mx-auto px-4 text-center flex flex-col items-center justify-center h-full pb-24">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, ease: "easeOut" }}
+              className="mb-8"
+            >
+              <Image
+                src="/RPGGame-Logo-Icon-MainMenu/RPGGame-Icon1.png"
+                alt="The Last Elf Logo"
+                width={576}
+                height={576}
+                className="mx-auto drop-shadow-2xl w-auto h-auto max-h-[40vh] md:max-h-[576px]"
+              />
+            </motion.div>
 
-          >
-            <Image src="/store-logos/google-play-style-svgrepo-com.svg" alt="Android" width={32} height={32} className="w-8 h-8 grayscale group-hover:grayscale-0 transition-all duration-300 group-hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.5)]" />
-            <span className="font-bold tracking-wider hidden sm:block">
-              Android
-            </span>
-          </a>
+            {/* Clarity Lines */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="flex flex-col items-center gap-2 mb-8"
+            >
+              <p className="text-neutral-400 text-sm md:text-base tracking-wider uppercase">
+                Offline, story-first, third-person dark fantasy ARPG
+              </p>
+            </motion.div>
+
+            {/* CTA Buttons */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.5, delay: 0.4 }}
+              className="flex flex-col md:flex-row gap-4 items-center justify-center mb-12 w-full max-w-2xl"
+            >
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                {/* App Store Badge */}
+                <a
+                  href="https://apps.apple.com/us/app/the-last-elf-dark-fantasy-rpg/id6758931119"
+                  target="_blank"
+                  className="flex items-center justify-center gap-3 bg-white hover:bg-gray-100 border-2 border-black rounded-xl px-4 py-2 text-black transition-transform hover:scale-105 font-sans min-w-[170px]"
+                >
+                  <Image src="/store-icons/Apple.svg" alt="Apple App Store" width={32} height={32} className="w-8 h-8 -mt-1" />
+                  <div className="flex flex-col items-start justify-center text-left">
+                    <span className="text-[11px] leading-tight font-medium tracking-wide">Download on the</span>
+                    <span className="text-[22px] font-semibold tracking-tight leading-none">App Store</span>
+                  </div>
+                </a>
+
+                {/* Google Play Badge */}
+                <a
+                  href="https://play.google.com/store/apps/details?id=com.conteza.games.thelastelf"
+                  target="_blank"
+                  className="flex items-center justify-center gap-3 bg-white hover:bg-gray-100 border-2 border-black rounded-xl px-4 py-2 text-black transition-transform hover:scale-105 font-sans min-w-[170px]"
+                >
+                  <Image src="/store-icons/Playstore.svg" alt="Google Play" width={30} height={30} className="w-[28px] h-[28px]" />
+                  <div className="flex flex-col items-start justify-center text-left">
+                    <span className="text-[11px] leading-tight font-medium uppercase tracking-wide cursor-default">GET IT ON</span>
+                    <span className="text-[22px] font-semibold tracking-tight leading-none">Google Play</span>
+                  </div>
+                </a>
+
+                {/* Steam Badge */}
+                <div
+                  className="flex items-center justify-center gap-3 bg-neutral-900 border-2 border-neutral-800 rounded-xl px-4 py-2 text-neutral-500 font-sans min-w-[170px] cursor-not-allowed opacity-60"
+                >
+                  <Image src="/store-logos/steam-svgrepo-com.svg" alt="Steam" width={32} height={32} className="w-8 h-8 grayscale contrast-50" />
+                  <div className="flex flex-col items-start justify-center text-left">
+                    <span className="text-[11px] leading-tight font-medium uppercase tracking-wide">COMING SOON ON</span>
+                    <span className="text-[22px] font-semibold tracking-tight leading-none">Steam</span>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+
+            {/* Platform Icons */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.6 }}
+              className="flex items-center justify-center gap-8 md:gap-12 text-neutral-300"
+            >
+              <a
+                href="#"
+                className="flex items-center gap-2 hover:text-white transition-colors cursor-pointer group"
+                target="_blank"
+              >
+                <Image src="/store-logos/app-store-svgrepo-com.svg" alt="macOS" width={32} height={32} className="w-8 h-8 grayscale group-hover:grayscale-0 transition-all duration-300 group-hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.5)]" />
+                <span className="font-bold tracking-wider hidden sm:block">
+                  macOS
+                </span>
+              </a>
+              <a
+                href="https://apps.apple.com/us/app/the-last-elf-dark-fantasy-rpg/id6758931119"
+                className="flex items-center gap-2 hover:text-white transition-colors cursor-pointer group"
+                target="_blank"
+              >
+                <Image src="/store-logos/app-store-svgrepo-com.svg" alt="iOS" width={32} height={32} className="w-8 h-8 grayscale group-hover:grayscale-0 transition-all duration-300 group-hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.5)]" />
+                <span className="font-bold tracking-wider hidden sm:block">
+                  iOS
+                </span>
+              </a>
+              <a
+                href="https://play.google.com/store/apps/details?id=com.conteza.games.thelastelf"
+                className="flex items-center gap-2 hover:text-white transition-colors cursor-pointer group"
+                target="_blank"
+              >
+                <Image src="/store-logos/google-play-style-svgrepo-com.svg" alt="Android" width={32} height={32} className="w-8 h-8 grayscale group-hover:grayscale-0 transition-all duration-300 group-hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.5)]" />
+                <span className="font-bold tracking-wider hidden sm:block">
+                  Android
+                </span>
+              </a>
+            </motion.div>
+
+            {/* Watch Trailer Button */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.5, delay: 0.8 }}
+              className="mt-12 flex items-center justify-center"
+            >
+              <a
+                href="https://youtube.com/@thelastelf-f3t?si=ZcNR0S7TBLHfb144"
+                target="_blank"
+                className="py-4 px-8 bg-transparent border border-neutral-600 hover:border-white hover:bg-white/5 text-neutral-300 hover:text-white font-heading font-bold text-xl transition-all tracking-widest uppercase flex items-center justify-center gap-2 backdrop-blur-sm shadow-[0_0_15px_rgba(255,255,255,0.05)] hover:shadow-[0_0_20px_rgba(255,255,255,0.1)] rounded-md"
+              >
+                <Youtube className="w-6 h-6" />
+                Watch trailer
+              </a>
+            </motion.div>
+          </div>
+
+          {/* Bottom gradient for smooth transition */}
+          <div className="absolute bottom-0 left-0 right-0 h-48 bg-gradient-to-b from-transparent to-black z-10 pointer-events-none" />
+
+          <div className="absolute bottom-2 left-0 right-0 text-center z-20">
+            <p className="text-neutral-500 text-xs tracking-[0.3em] uppercase animate-pulse">
+              Scroll down for more
+            </p>
+          </div>
         </motion.div>
-
-        {/* Watch Trailer Button */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.9 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.5, delay: 0.8 }}
-          className="mt-12 flex items-center justify-center"
-        >
-          <a
-            href="https://youtube.com/@thelastelf-f3t?si=ZcNR0S7TBLHfb144"
-            target="_blank"
-            className="py-4 px-8 bg-transparent border border-neutral-600 hover:border-white hover:bg-white/5 text-neutral-300 hover:text-white font-heading font-bold text-xl transition-all tracking-widest uppercase flex items-center justify-center gap-2 backdrop-blur-sm"
-          >
-            <Youtube className="w-6 h-6" />
-            Watch trailer
-          </a>
-        </motion.div>
-      </div>
-
-      {/* Bottom gradient for smooth transition */}
-      <div className="absolute bottom-0 left-0 right-0 h-48 bg-gradient-to-b from-transparent to-black z-10 pointer-events-none" />
-
-      <div className="absolute bottom-2 left-0 right-0 text-center z-20">
-        <p className="text-neutral-500 text-xs tracking-[0.3em] uppercase animate-pulse">
-          Scroll down for more
-        </p>
       </div>
     </section>
   );

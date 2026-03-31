@@ -12,7 +12,7 @@ export default function Footer() {
                     <h2 className="text-4xl font-heading text-white mb-6">The Hunt Awaits</h2>
                     <div className="flex flex-col lg:flex-row gap-6 justify-center items-center">
                         {/* CTA Buttons row */}
-                        <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-6">
+                        <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
                             {/* App Store Badge */}
                             <a
                                 href="https://apps.apple.com/us/app/the-last-elf-dark-fantasy-rpg/id6758931119"
@@ -38,11 +38,16 @@ export default function Footer() {
                                     <span className="text-[22px] font-semibold tracking-tight leading-none">Google Play</span>
                                 </div>
                             </a>
-                        </div>
-                        <div
-                            className="px-8 py-3.5 bg-transparent border border-neutral-700 text-neutral-400 font-bold rounded-xl tracking-wider uppercase cursor-default whitespace-nowrap"
-                        >
-                            Steam release later (page coming soon)
+                            {/* Steam Badge */}
+                            <div
+                                className="flex items-center justify-center gap-3 bg-neutral-900 border-2 border-neutral-800 rounded-xl px-4 py-2 text-neutral-500 font-sans min-w-[170px] cursor-not-allowed opacity-60"
+                            >
+                                <Image src="/store-logos/steam-svgrepo-com.svg" alt="Steam" width={32} height={32} className="w-8 h-8 grayscale contrast-50" />
+                                <div className="flex flex-col items-start justify-center text-left">
+                                    <span className="text-[11px] leading-tight font-medium uppercase tracking-wide">COMING SOON ON</span>
+                                    <span className="text-[22px] font-semibold tracking-tight leading-none">Steam</span>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
