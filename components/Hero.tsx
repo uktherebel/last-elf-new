@@ -410,6 +410,44 @@ export default function Hero() {
               </a>
             </motion.div>
 
+            {/* Mobile Social Strip */}
+            <div className="mt-8 flex items-center justify-center md:hidden">
+              <div className="flex items-center gap-5 rounded-full border border-white/15 bg-black/45 px-4 py-2 text-neutral-300 backdrop-blur-sm">
+                <a
+                  href="https://www.tiktok.com/@lastelfgame"
+                  className="hover:text-white transition-colors"
+                  target="_blank"
+                  title="TikTok"
+                >
+                  <TikTokIcon className="w-5 h-5" />
+                </a>
+                <a
+                  href="https://youtube.com/@thelastelf-f3t?si=ZcNR0S7TBLHfb144"
+                  className="hover:text-white transition-colors"
+                  title="YouTube"
+                  target="_blank"
+                >
+                  <Youtube className="w-5 h-5" />
+                </a>
+                <a
+                  href="https://www.reddit.com/user/the-last-elf/"
+                  className="hover:text-white transition-colors"
+                  title="Reddit"
+                  target="_blank"
+                >
+                  <RedditIcon className="w-5 h-5" />
+                </a>
+                <a
+                  href="https://www.instagram.com/lastelfgame/"
+                  className="hover:text-white transition-colors"
+                  title="Instagram"
+                  target="_blank"
+                >
+                  <Instagram className="w-5 h-5" />
+                </a>
+              </div>
+            </div>
+
             {/* Watch Trailer Button */}
             <motion.div
               initial={{ opacity: 0, scale: 0.9 }}
