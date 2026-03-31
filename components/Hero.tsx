@@ -230,6 +230,7 @@ export default function Hero() {
           ref={videoRef}
           src="/portal-vid-2.mp4"
           className="absolute inset-0 z-0 h-full w-full object-cover md:hidden"
+          poster="/RPG-Game-Capsules-22-January-2026/MainCapsule1.jpg"
           muted
           playsInline
           preload="auto"
@@ -239,10 +240,18 @@ export default function Hero() {
         {/* Fallback Image behind Canvas/Video */}
         <div className="absolute inset-0 z-[-1] select-none pointer-events-none">
           <Image
+            src="/RPG-Game-Capsules-22-January-2026/MainCapsule1.jpg"
+            alt="The Last Elf Background"
+            fill
+            className="object-cover md:hidden"
+            priority
+            draggable={false}
+          />
+          <Image
             src="/portal-frames/0001.jpg"
             alt="The Last Elf Background"
             fill
-            className="object-cover"
+            className="hidden object-cover md:block"
             priority
             draggable={false}
           />

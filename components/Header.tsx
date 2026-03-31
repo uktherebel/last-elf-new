@@ -64,6 +64,14 @@ export default function Header() {
 
   return (
     <header className="sticky top-0 z-[60] overflow-x-clip border-b border-amber-500/25 bg-black/80 backdrop-blur-md">
+      {openMenu && (
+        <button
+          type="button"
+          aria-label="Close menu"
+          onClick={closeMenus}
+          className="fixed inset-0 z-[65] h-full w-full cursor-default bg-transparent"
+        />
+      )}
       <div className="container mx-auto flex max-w-6xl items-center justify-between gap-3 px-4 py-3">
         <Link
           href="/"
@@ -74,7 +82,7 @@ export default function Header() {
         </Link>
 
         <div className="flex items-center gap-1 sm:gap-2">
-          <div className="relative">
+          <div className="relative z-[70]">
             <button
               type="button"
               onClick={() => toggleMenu("socials")}
@@ -115,7 +123,7 @@ export default function Header() {
             </div>
           </div>
 
-          <div className="relative">
+          <div className="relative z-[70]">
             <button
               type="button"
               onClick={() => toggleMenu("downloads")}
