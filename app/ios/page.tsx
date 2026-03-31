@@ -86,20 +86,18 @@ export default function IosPage() {
 
                 {/* Social Links */}
                 <div className="flex gap-8 text-neutral-400 mt-4">
-                    <a
-                        href="#"
-                        className="hover:text-white transition-transform transition-colors duration-200 hover:scale-125"
-                        title="Discord"
+                    <span
+                        className="opacity-50 cursor-not-allowed"
+                        title="Discord (coming soon)"
                     >
                         <DiscordIcon className="w-6 h-6" />
-                    </a>
-                    <a
-                        href="#"
-                        className="hover:text-white transition-transform transition-colors duration-200 hover:scale-125"
-                        title="Reddit"
+                    </span>
+                    <span
+                        className="opacity-50 cursor-not-allowed"
+                        title="Reddit (coming soon)"
                     >
                         <RedditIcon className="w-6 h-6" />
-                    </a>
+                    </span>
                     <a
                         href="https://youtube.com/@thelastelf-f3t?si=ZcNR0S7TBLHfb144"
                         className="hover:text-white transition-transform transition-colors duration-200 hover:scale-125"
@@ -108,27 +106,24 @@ export default function IosPage() {
                     >
                         <Youtube className="w-6 h-6" />
                     </a>
-                    <a
-                        href="#"
-                        className="hover:text-white transition-transform transition-colors duration-200 hover:scale-125"
-                        title="Instagram"
+                    <span
+                        className="opacity-50 cursor-not-allowed"
+                        title="Instagram (coming soon)"
                     >
                         <Instagram className="w-6 h-6" />
-                    </a>
-                    <a
-                        href="#"
-                        className="hover:text-white transition-transform transition-colors duration-200 hover:scale-125"
-                        title="Twitter"
+                    </span>
+                    <span
+                        className="opacity-50 cursor-not-allowed"
+                        title="Twitter (coming soon)"
                     >
                         <Twitter className="w-6 h-6" />
-                    </a>
-                    <a
-                        href="#"
-                        className="hover:text-white transition-transform transition-colors duration-200 hover:scale-125"
-                        title="Facebook"
+                    </span>
+                    <span
+                        className="opacity-50 cursor-not-allowed"
+                        title="Facebook (coming soon)"
                     >
                         <Facebook className="w-6 h-6" />
-                    </a>
+                    </span>
                 </div>
             </div>
         </main>

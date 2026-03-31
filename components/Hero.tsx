@@ -219,27 +219,24 @@ export default function Hero() {
                 >
                   <Instagram className="w-5 h-5" />
                 </a>
-                <a
-                  href="#"
-                  className="hover:text-white transition-transform transition-colors duration-200 hover:scale-125"
-                  title="Discord"
+                <span
+                  className="opacity-50 cursor-not-allowed"
+                  title="Discord (coming soon)"
                 >
                   <DiscordIcon className="w-5 h-5" />
-                </a>
-                <a
-                  href="#"
-                  className="hover:text-white transition-transform transition-colors duration-200 hover:scale-125"
-                  title="Twitter"
+                </span>
+                <span
+                  className="opacity-50 cursor-not-allowed"
+                  title="Twitter (coming soon)"
                 >
                   <Twitter className="w-5 h-5" />
-                </a>
-                <a
-                  href="#"
-                  className="hover:text-white transition-transform transition-colors duration-200 hover:scale-125"
-                  title="Facebook"
+                </span>
+                <span
+                  className="opacity-50 cursor-not-allowed"
+                  title="Facebook (coming soon)"
                 >
                   <Facebook className="w-5 h-5" />
-                </a>
+                </span>
               </div>
               <div className="h-24 w-[1px] bg-neutral-700 mt-8" />
             </div>
@@ -328,16 +325,12 @@ export default function Hero() {
               transition={{ duration: 0.5, delay: 0.6 }}
               className="flex items-center justify-center gap-8 md:gap-12 text-neutral-300"
             >
-              <a
-                href="#"
-                className="flex items-center gap-2 hover:text-white transition-colors cursor-pointer group"
-                target="_blank"
-              >
+              <span className="flex items-center gap-2 text-neutral-500 cursor-not-allowed group">
                 <Image src="/store-logos/app-store-svgrepo-com.svg" alt="macOS" width={32} height={32} className="w-8 h-8 grayscale group-hover:grayscale-0 transition-all duration-300 group-hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.5)]" />
                 <span className="font-bold tracking-wider hidden sm:block">
                   macOS
                 </span>
-              </a>
+              </span>
               <a
                 href="https://apps.apple.com/us/app/the-last-elf-dark-fantasy-rpg/id6758931119"
                 className="flex items-center gap-2 hover:text-white transition-colors cursor-pointer group"
