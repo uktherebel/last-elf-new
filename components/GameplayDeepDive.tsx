@@ -5,19 +5,19 @@ const sections = [
     {
         title: "Visceral Combat",
         description: "Combat rewards timing, positioning, and stamina management. No button mashing—every strike counts.",
-        image: "/Screenshots - Refined/Whisk_ctmljwoknwo3mtmi1solddotq2y2qtlifgny0co.png",
+        image: "/Screenshots - Refined/sword-combat-real-time-battle.png",
         align: "left",
     },
     {
         title: "Explore the Ruins",
         description: "Venture into forgotten castles and twisted forests. Find hidden paths, ancient weapons, and the secrets of the Last Elf.",
-        image: "/Screenshots - Refined/Whisk_ito1mwnmnwo1qmyy0iyifjytatm3qtl0mtm10iz.png",
+        image: "/Screenshots - Refined/ruined-world-exploration-elf.png",
         align: "right",
     },
     {
         title: "Earn Your Power",
         description: "Progression is earned, not bought. Gather gold, upgrade your gear, and master your skills to survive.",
-        image: "/Screenshots - Refined/Whisk_qznhdjnhjwz2ewo40szxidotimzyqtlknzni1ym.png",
+        image: "/Screenshots - Refined/demon-boss-arena-fight.png",
         align: "left",
     },
 ];

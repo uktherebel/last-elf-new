@@ -1,3 +1,14 @@
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+    title: "Terms of Use",
+    description:
+        "Read The Last Elf terms of use and legal conditions for gameplay.",
+    alternates: {
+        canonical: "/terms",
+    },
+};
+
 export default function TermsPage() {
     return (
         <main className="min-h-screen bg-black px-4 py-20 text-white">

@@ -1,3 +1,14 @@
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+    title: "Privacy Policy",
+    description:
+        "Read The Last Elf privacy policy and data handling information.",
+    alternates: {
+        canonical: "/privacy",
+    },
+};
+
 export default function PrivacyPage() {
     return (
         <main className="min-h-screen bg-black px-4 py-20 text-white">

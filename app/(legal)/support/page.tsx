@@ -1,3 +1,14 @@
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+    title: "Support",
+    description:
+        "Get support for The Last Elf, including contact details and the official support form.",
+    alternates: {
+        canonical: "/support",
+    },
+};
+
 export default function SupportPage() {
     return (
         <main className="min-h-screen bg-black px-4 py-20 text-white">

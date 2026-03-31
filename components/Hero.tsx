@@ -1,14 +1,14 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { motion, useScroll, useTransform, useMotionValueEvent } from "framer-motion";
-import Image from "next/image";
 import {
-  Youtube,
-  Instagram,
-  Facebook,
-  Twitter,
-} from "lucide-react";
+  motion,
+  useScroll,
+  useTransform,
+  useMotionValueEvent,
+} from "framer-motion";
+import Image from "next/image";
+import { Youtube, Instagram, Facebook, Twitter } from "lucide-react";
 
 // Custom Brand Icons
 const DiscordIcon = ({ className }: { className?: string }) => (
@@ -53,22 +53,27 @@ const TikTokIcon = ({ className }: { className?: string }) => (
 export default function Hero() {
   const containerRef = useRef<HTMLElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  
+
   // Create a scroll trigger
   const { scrollYProgress } = useScroll({
     target: containerRef,
-    offset: ["start start", "end end"]
+    offset: ["start start", "end end"],
   });
 
   // Calculate opacity for fading out the text elements.
   // We want it to be fully visible at 0%, and fade to 0 opacity by 30% of the scroll.
   const contentOpacity = useTransform(scrollYProgress, [0, 0.3], [1, 0]);
-  const finalBottomTintOpacity = useTransform(scrollYProgress, [0.82, 0.96, 1], [0, 0.75, 1]);
+  const finalBottomTintOpacity = useTransform(
+    scrollYProgress,
+    [0.82, 0.96, 1],
+    [0, 0.75, 1],
+  );
 
   // Frame loading and rendering
   const frameCount = 109;
-  const currentFrame = (index: number) => `/portal-frames/${index.toString().padStart(4, '0')}.jpg`;
-  
+  const currentFrame = (index: number) =>
+    `/portal-frames/${index.toString().padStart(4, "0")}.jpg`;
+
   const [images, setImages] = useState<HTMLImageElement[]>([]);
 
   useEffect(() => {
@@ -87,29 +92,32 @@ export default function Hero() {
     };
   }, []);
 
-  const renderFrame = (index: number, imgArray: HTMLImageElement[] = images) => {
+  const renderFrame = (
+    index: number,
+    imgArray: HTMLImageElement[] = images,
+  ) => {
     if (!canvasRef.current || !imgArray[index]) return;
     const canvas = canvasRef.current;
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
-    
+
     const img = imgArray[index];
-    
+
     // Ensure image has actual dimensions before trying to draw
     if (!img.naturalWidth) return;
-    
+
     // Mimic 'object-fit: cover' logic for the canvas
     const cw = canvas.width;
     const ch = canvas.height;
     const iw = img.naturalWidth;
     const ih = img.naturalHeight;
-    
+
     const scale = Math.max(cw / iw, ch / ih);
     const w = iw * scale;
     const h = ih * scale;
     const x = (cw - w) / 2;
     const y = (ch - h) / 2;
-    
+
     ctx.clearRect(0, 0, cw, ch);
     ctx.drawImage(img, x, y, w, h);
   };
@@ -119,7 +127,7 @@ export default function Hero() {
     if (images.length === 0) return;
     const frameIndex = Math.min(
       images.length - 1,
-      Math.floor(latest * frameCount)
+      Math.floor(latest * frameCount),
     );
     renderFrame(frameIndex);
   });
@@ -131,16 +139,18 @@ export default function Hero() {
         canvasRef.current.width = window.innerWidth;
         canvasRef.current.height = window.innerHeight;
         // Redraw current frame to match new dimensions
-        renderFrame(Math.min(
-          images.length - 1,
-          Math.floor(scrollYProgress.get() * frameCount)
-        ));
+        renderFrame(
+          Math.min(
+            images.length - 1,
+            Math.floor(scrollYProgress.get() * frameCount),
+          ),
+        );
       }
     };
-    
+
     // Initial size setup
     handleResize();
-    
+
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, [images, scrollYProgress]);
@@ -152,11 +162,10 @@ export default function Hero() {
         Inside it, the actual content fades while the canvas scrubs the video frames.
       */}
       <div className="sticky top-0 h-screen w-full overflow-hidden">
-      
         {/* Canvas Background */}
-        <canvas 
-          ref={canvasRef} 
-          className="absolute inset-0 z-0 w-full h-full object-cover" 
+        <canvas
+          ref={canvasRef}
+          className="absolute inset-0 z-0 w-full h-full object-cover"
         />
 
         {/* Fallback Image behind Canvas (visible only before frames load) */}
@@ -178,8 +187,10 @@ export default function Hero() {
         />
 
         {/* Dynamic Foreground Content, fades using contentOpacity */}
-        <motion.div style={{ opacity: contentOpacity }} className="relative z-10 w-full h-full">
-        
+        <motion.div
+          style={{ opacity: contentOpacity }}
+          className="relative z-10 w-full h-full"
+        >
           {/* Left Socials Sidebar */}
           <div className="absolute left-8 bottom-0 top-0 flex flex-col justify-center items-center z-20 hidden md:flex">
             <div className="flex flex-col gap-6 items-center">
@@ -267,7 +278,7 @@ export default function Hero() {
               className="flex flex-col items-center gap-2 mb-8"
             >
               <p className="text-neutral-400 text-sm md:text-base tracking-wider uppercase">
-                Offline, story-first, third-person dark fantasy ARPG
+                Offline, story-first, third-person dark fantasy Action RPG
               </p>
             </motion.div>
 
@@ -285,10 +296,20 @@ export default function Hero() {
                   target="_blank"
                   className="flex items-center justify-center gap-3 bg-white hover:bg-gray-100 border-2 border-black rounded-xl px-4 py-2 text-black transition-transform hover:scale-105 font-sans min-w-[170px]"
                 >
-                  <Image src="/store-icons/Apple.svg" alt="Apple App Store" width={32} height={32} className="w-8 h-8 -mt-1" />
+                  <Image
+                    src="/store-icons/Apple.svg"
+                    alt="Apple App Store"
+                    width={32}
+                    height={32}
+                    className="w-8 h-8 -mt-1"
+                  />
                   <div className="flex flex-col items-start justify-center text-left">
-                    <span className="text-[11px] leading-tight font-medium tracking-wide">Download on the</span>
-                    <span className="text-[22px] font-semibold tracking-tight leading-none">App Store</span>
+                    <span className="text-[11px] leading-tight font-medium tracking-wide">
+                      Download on the
+                    </span>
+                    <span className="text-[22px] font-semibold tracking-tight leading-none">
+                      App Store
+                    </span>
                   </div>
                 </a>
 
@@ -298,21 +319,39 @@ export default function Hero() {
                   target="_blank"
                   className="flex items-center justify-center gap-3 bg-white hover:bg-gray-100 border-2 border-black rounded-xl px-4 py-2 text-black transition-transform hover:scale-105 font-sans min-w-[170px]"
                 >
-                  <Image src="/store-icons/Playstore.svg" alt="Google Play" width={30} height={30} className="w-[28px] h-[28px]" />
+                  <Image
+                    src="/store-icons/Playstore.svg"
+                    alt="Google Play"
+                    width={30}
+                    height={30}
+                    className="w-[28px] h-[28px]"
+                  />
                   <div className="flex flex-col items-start justify-center text-left">
-                    <span className="text-[11px] leading-tight font-medium uppercase tracking-wide cursor-default">GET IT ON</span>
-                    <span className="text-[22px] font-semibold tracking-tight leading-none">Google Play</span>
+                    <span className="text-[11px] leading-tight font-medium uppercase tracking-wide cursor-default">
+                      GET IT ON
+                    </span>
+                    <span className="text-[22px] font-semibold tracking-tight leading-none">
+                      Google Play
+                    </span>
                   </div>
                 </a>
 
                 {/* Steam Badge */}
-                <div
-                  className="flex items-center justify-center gap-3 bg-neutral-900 border-2 border-neutral-800 rounded-xl px-4 py-2 text-neutral-500 font-sans min-w-[170px] cursor-not-allowed opacity-60"
-                >
-                  <Image src="/store-logos/steam-svgrepo-com.svg" alt="Steam" width={32} height={32} className="w-8 h-8 grayscale contrast-50" />
+                <div className="flex items-center justify-center gap-3 bg-neutral-900 border-2 border-neutral-800 rounded-xl px-4 py-2 text-neutral-500 font-sans min-w-[170px] cursor-not-allowed opacity-60">
+                  <Image
+                    src="/store-logos/steam-svgrepo-com.svg"
+                    alt="Steam"
+                    width={32}
+                    height={32}
+                    className="w-8 h-8 grayscale contrast-50"
+                  />
                   <div className="flex flex-col items-start justify-center text-left">
-                    <span className="text-[11px] leading-tight font-medium uppercase tracking-wide">COMING SOON ON</span>
-                    <span className="text-[22px] font-semibold tracking-tight leading-none">Steam</span>
+                    <span className="text-[11px] leading-tight font-medium uppercase tracking-wide">
+                      COMING SOON ON
+                    </span>
+                    <span className="text-[22px] font-semibold tracking-tight leading-none">
+                      Steam
+                    </span>
                   </div>
                 </div>
               </div>
@@ -326,7 +365,13 @@ export default function Hero() {
               className="flex items-center justify-center gap-8 md:gap-12 text-neutral-300"
             >
               <span className="flex items-center gap-2 text-neutral-500 cursor-not-allowed group">
-                <Image src="/store-logos/app-store-svgrepo-com.svg" alt="macOS" width={32} height={32} className="w-8 h-8 grayscale group-hover:grayscale-0 transition-all duration-300 group-hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.5)]" />
+                <Image
+                  src="/store-logos/app-store-svgrepo-com.svg"
+                  alt="macOS"
+                  width={32}
+                  height={32}
+                  className="w-8 h-8 grayscale group-hover:grayscale-0 transition-all duration-300 group-hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.5)]"
+                />
                 <span className="font-bold tracking-wider hidden sm:block">
                   macOS
                 </span>
@@ -336,7 +381,13 @@ export default function Hero() {
                 className="flex items-center gap-2 hover:text-white transition-colors cursor-pointer group"
                 target="_blank"
               >
-                <Image src="/store-logos/app-store-svgrepo-com.svg" alt="iOS" width={32} height={32} className="w-8 h-8 grayscale group-hover:grayscale-0 transition-all duration-300 group-hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.5)]" />
+                <Image
+                  src="/store-logos/app-store-svgrepo-com.svg"
+                  alt="iOS"
+                  width={32}
+                  height={32}
+                  className="w-8 h-8 grayscale group-hover:grayscale-0 transition-all duration-300 group-hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.5)]"
+                />
                 <span className="font-bold tracking-wider hidden sm:block">
                   iOS
                 </span>
@@ -346,7 +397,13 @@ export default function Hero() {
                 className="flex items-center gap-2 hover:text-white transition-colors cursor-pointer group"
                 target="_blank"
               >
-                <Image src="/store-logos/google-play-style-svgrepo-com.svg" alt="Android" width={32} height={32} className="w-8 h-8 grayscale group-hover:grayscale-0 transition-all duration-300 group-hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.5)]" />
+                <Image
+                  src="/store-logos/google-play-style-svgrepo-com.svg"
+                  alt="Android"
+                  width={32}
+                  height={32}
+                  className="w-8 h-8 grayscale group-hover:grayscale-0 transition-all duration-300 group-hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.5)]"
+                />
                 <span className="font-bold tracking-wider hidden sm:block">
                   Android
                 </span>
@@ -361,7 +418,7 @@ export default function Hero() {
               className="mt-12 flex items-center justify-center"
             >
               <a
-                href="https://youtube.com/@thelastelf-f3t?si=ZcNR0S7TBLHfb144"
+                href="https://www.youtube.com/watch?v=1z0FyfoEv-E"
                 target="_blank"
                 className="py-4 px-8 bg-transparent border border-neutral-600 hover:border-white hover:bg-white/5 text-neutral-300 hover:text-white font-heading font-bold text-xl transition-all tracking-widest uppercase flex items-center justify-center gap-2 backdrop-blur-sm shadow-[0_0_15px_rgba(255,255,255,0.05)] hover:shadow-[0_0_20px_rgba(255,255,255,0.1)] rounded-md"
               >

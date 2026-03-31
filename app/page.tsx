@@ -6,6 +6,9 @@ import Gallery from "@/components/Gallery";
 import Footer from "@/components/Footer";
 import TrailerSection from "@/components/TrailerSection";
 import { siteUrl } from "@/lib/seo";
+import SeoStoryContent from "@/components/SeoStoryContent";
+import FaqSection, { faqs } from "@/components/FaqSection";
+import QuickLinksSection from "@/components/QuickLinksSection";
 
 const structuredData = {
   "@context": "https://schema.org",
@@ -42,6 +45,17 @@ const structuredData = {
       downloadUrl:
         "https://apps.apple.com/us/app/the-last-elf-dark-fantasy-rpg/id6758931119",
     },
+    {
+      "@type": "FAQPage",
+      mainEntity: faqs.map((faq) => ({
+        "@type": "Question",
+        name: faq.question,
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: faq.answer,
+        },
+      })),
+    },
   ],
 };
 
@@ -61,6 +75,9 @@ export default function Home() {
       <TrailerSection />
       <StorySection />
       <Gallery />
+      <SeoStoryContent />
+      <FaqSection />
+      <QuickLinksSection />
       <Footer />
     </main>
   );
