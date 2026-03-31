@@ -1,4 +1,7 @@
+"use client";
+
 import Link from "next/link";
+import { useState } from "react";
 
 const socials = [
   {
@@ -51,25 +54,44 @@ const downloads = [
 ];
 
 export default function Header() {
+  const [openMenu, setOpenMenu] = useState<"socials" | "downloads" | null>(null);
+
+  const toggleMenu = (menu: "socials" | "downloads") => {
+    setOpenMenu((current) => (current === menu ? null : menu));
+  };
+
+  const closeMenus = () => setOpenMenu(null);
+
   return (
-    <header className="sticky top-0 z-[60] border-b border-amber-500/25 bg-black/80 backdrop-blur-md">
+    <header className="sticky top-0 z-[60] overflow-x-clip border-b border-amber-500/25 bg-black/80 backdrop-blur-md">
       <div className="container mx-auto flex max-w-6xl items-center justify-between gap-3 px-4 py-3">
         <Link
           href="/"
-          className="rounded-md border border-amber-400/30 bg-amber-400/10 px-3 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-amber-100 transition hover:border-amber-300/60 hover:bg-amber-300/20"
+          onClick={closeMenus}
+          className="rounded-md border border-amber-400/30 bg-amber-400/10 px-2 py-1.5 text-[10px] font-semibold uppercase tracking-[0.12em] text-amber-100 transition hover:border-amber-300/60 hover:bg-amber-300/20 sm:px-3 sm:py-2 sm:text-xs sm:tracking-[0.2em]"
         >
           Home
         </Link>
 
-        <div className="flex items-center gap-2">
-          <div className="group relative">
+        <div className="flex items-center gap-1 sm:gap-2">
+          <div className="relative">
             <button
               type="button"
-              className="rounded-md border border-white/20 bg-white/5 px-3 py-2 text-xs font-semibold uppercase tracking-[0.18em] text-neutral-100 transition hover:border-white/40 hover:bg-white/10"
+              onClick={() => toggleMenu("socials")}
+              aria-expanded={openMenu === "socials"}
+              aria-controls="socials-menu"
+              className="rounded-md border border-white/20 bg-white/5 px-2 py-1.5 text-[10px] font-semibold uppercase tracking-[0.1em] text-neutral-100 transition hover:border-white/40 hover:bg-white/10 sm:px-3 sm:py-2 sm:text-xs sm:tracking-[0.18em]"
             >
               Socials
             </button>
-            <div className="pointer-events-none invisible absolute left-0 top-full w-44 rounded-lg border border-amber-300/20 bg-zinc-950/95 p-3 opacity-0 shadow-2xl transition duration-150 group-hover:pointer-events-auto group-hover:visible group-hover:opacity-100">
+            <div
+              id="socials-menu"
+              className={`absolute left-0 top-full z-20 mt-1 w-44 rounded-lg border border-amber-300/20 bg-zinc-950/95 p-3 shadow-2xl transition duration-150 ${
+                openMenu === "socials"
+                  ? "visible opacity-100 pointer-events-auto"
+                  : "invisible opacity-0 pointer-events-none"
+              }`}
+            >
               <div className="flex flex-col gap-2">
                 {socials.map((social) =>
                   social.href ? (
@@ -78,6 +100,7 @@ export default function Header() {
                       href={social.href}
                       target="_blank"
                       rel="noopener noreferrer"
+                      onClick={closeMenus}
                       className="text-sm text-neutral-200 transition hover:text-amber-200"
                     >
                       {social.label}
@@ -92,14 +115,24 @@ export default function Header() {
             </div>
           </div>
 
-          <div className="group relative">
+          <div className="relative">
             <button
               type="button"
-              className="rounded-md border border-white/20 bg-white/5 px-3 py-2 text-xs font-semibold uppercase tracking-[0.18em] text-neutral-100 transition hover:border-white/40 hover:bg-white/10"
+              onClick={() => toggleMenu("downloads")}
+              aria-expanded={openMenu === "downloads"}
+              aria-controls="downloads-menu"
+              className="rounded-md border border-white/20 bg-white/5 px-2 py-1.5 text-[10px] font-semibold uppercase tracking-[0.1em] text-neutral-100 transition hover:border-white/40 hover:bg-white/10 sm:px-3 sm:py-2 sm:text-xs sm:tracking-[0.18em]"
             >
               Download
             </button>
-            <div className="pointer-events-none invisible absolute left-0 top-full w-44 rounded-lg border border-amber-300/20 bg-zinc-950/95 p-3 opacity-0 shadow-2xl transition duration-150 group-hover:pointer-events-auto group-hover:visible group-hover:opacity-100">
+            <div
+              id="downloads-menu"
+              className={`absolute left-0 top-full z-20 mt-1 w-44 rounded-lg border border-amber-300/20 bg-zinc-950/95 p-3 shadow-2xl transition duration-150 ${
+                openMenu === "downloads"
+                  ? "visible opacity-100 pointer-events-auto"
+                  : "invisible opacity-0 pointer-events-none"
+              }`}
+            >
               <div className="flex flex-col gap-2">
                 {downloads.map((download) =>
                   download.href ? (
@@ -108,6 +141,7 @@ export default function Header() {
                       href={download.href}
                       target="_blank"
                       rel="noopener noreferrer"
+                      onClick={closeMenus}
                       className="text-sm text-neutral-200 transition hover:text-amber-200"
                     >
                       {download.label}
