@@ -7,10 +7,6 @@ import {
   Instagram,
   Facebook,
   Twitter,
-  Apple,
-  Smartphone,
-  Gamepad2,
-  Monitor,
 } from "lucide-react";
 
 // Custom Brand Icons
@@ -170,11 +166,11 @@ export default function Hero() {
           className="flex flex-col md:flex-row gap-4 items-center justify-center mb-12 w-full max-w-2xl"
         >
           <a
-            href="#"
+            href="https://apps.apple.com/us/app/the-last-elf-dark-fantasy-rpg/id6758931119"
             className="py-4 px-8 bg-white hover:bg-neutral-200 text-black font-heading font-bold text-xl transition-all tracking-widest uppercase flex items-center justify-center gap-2 group shadow-[0_0_20px_rgba(255,255,255,0.3)]"
           >
-            <Apple className="w-6 h-6" />
-            Pre-order on App Store (soon)
+            <Image src="/store-logos/app-store-svgrepo-com.svg" alt="App Store" width={24} height={24} className="w-6 h-6" />
+            Download on App Store
           </a>
 
           {/* Secondary Button */}
@@ -199,7 +195,7 @@ export default function Hero() {
             className="flex items-center gap-2 transition-colors group opacity-50 cursor-default"
             title="Page coming soon"
           >
-            <Gamepad2 className="w-8 h-8" />
+            <Image src="/store-logos/steam-svgrepo-com.svg" alt="Steam" width={32} height={32} className="w-8 h-8 grayscale transition-all duration-300" />
             <div className="flex flex-col text-left">
               <span className="font-bold tracking-wider hidden sm:block">
                 STEAM
@@ -212,26 +208,31 @@ export default function Hero() {
           <a
             href="#"
             className="flex items-center gap-2 hover:text-white transition-colors cursor-pointer group"
+            target="_blank"
+
           >
-            <Monitor className="w-8 h-8 group-hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.5)]" />
+            <Image src="/store-logos/app-store-svgrepo-com.svg" alt="macOS" width={32} height={32} className="w-8 h-8 grayscale group-hover:grayscale-0 transition-all duration-300 group-hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.5)]" />
             <span className="font-bold tracking-wider hidden sm:block">
               macOS
             </span>
           </a>
           <a
-            href="#"
+            href="https://apps.apple.com/us/app/the-last-elf-dark-fantasy-rpg/id6758931119"
             className="flex items-center gap-2 hover:text-white transition-colors cursor-pointer group"
+            target="_blank"
           >
-            <Apple className="w-8 h-8 group-hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.5)]" />
+            <Image src="/store-logos/app-store-svgrepo-com.svg" alt="iOS" width={32} height={32} className="w-8 h-8 grayscale group-hover:grayscale-0 transition-all duration-300 group-hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.5)]" />
             <span className="font-bold tracking-wider hidden sm:block">
               iOS
             </span>
           </a>
           <a
-            href="#"
+            href="https://play.google.com/store/apps/details?id=com.conteza.games.thelastelf"
             className="flex items-center gap-2 hover:text-white transition-colors cursor-pointer group"
+            target="_blank"
+
           >
-            <Smartphone className="w-8 h-8 group-hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.5)]" />
+            <Image src="/store-logos/google-play-style-svgrepo-com.svg" alt="Android" width={32} height={32} className="w-8 h-8 grayscale group-hover:grayscale-0 transition-all duration-300 group-hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.5)]" />
             <span className="font-bold tracking-wider hidden sm:block">
               Android
             </span>

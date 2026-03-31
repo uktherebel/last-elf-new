@@ -1,5 +1,6 @@
 import Link from "next/link";
-import { MoveRight, Apple } from "lucide-react";
+import { MoveRight } from "lucide-react";
+import Image from "next/image";
 
 export default function Footer() {
     return (
@@ -12,9 +13,9 @@ export default function Footer() {
                     <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
                         <a
                             href="#"
-                            className="px-8 py-4 bg-white text-black font-bold rounded-sm tracking-wider uppercase hover:bg-neutral-200 transition-colors inline-flex items-center gap-2"
+                            className="px-8 py-4 bg-white text-black font-bold rounded-sm tracking-wider uppercase hover:bg-neutral-200 transition-colors inline-flex items-center gap-3"
                         >
-                            <Apple className="w-5 h-5" /> Pre-order on App Store (soon)
+                            <Image src="/store-logos/app-store-svgrepo-com.svg" alt="App Store" width={24} height={24} className="w-6 h-6" /> Download on App Store
                         </a>
                         <div
                             className="px-8 py-4 bg-transparent border border-neutral-700 text-neutral-400 font-bold rounded-sm tracking-wider uppercase cursor-default"
