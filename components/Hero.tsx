@@ -53,6 +53,9 @@ const TikTokIcon = ({ className }: { className?: string }) => (
 export default function Hero() {
   const containerRef = useRef<HTMLElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const videoDurationRef = useRef(0);
+  const isMobileRef = useRef(false);
 
   // Create a scroll trigger
   const { scrollYProgress } = useScroll({
@@ -107,6 +110,38 @@ export default function Hero() {
   };
 
   useEffect(() => {
+    const mediaQuery = window.matchMedia("(max-width: 767px)");
+    const updateIsMobile = () => {
+      isMobileRef.current = mediaQuery.matches;
+    };
+
+    updateIsMobile();
+    mediaQuery.addEventListener("change", updateIsMobile);
+    return () => mediaQuery.removeEventListener("change", updateIsMobile);
+  }, []);
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    const handleMetadata = () => {
+      videoDurationRef.current = Number.isFinite(video.duration)
+        ? video.duration
+        : 0;
+    };
+
+    handleMetadata();
+    video.addEventListener("loadedmetadata", handleMetadata);
+    video.addEventListener("durationchange", handleMetadata);
+    return () => {
+      video.removeEventListener("loadedmetadata", handleMetadata);
+      video.removeEventListener("durationchange", handleMetadata);
+    };
+  }, []);
+
+  useEffect(() => {
+    if (window.matchMedia("(max-width: 767px)").matches) return;
+
     // Preload all frames
     const loadedImages: HTMLImageElement[] = [];
     for (let i = 1; i <= frameCount; i++) {
@@ -128,6 +163,20 @@ export default function Hero() {
 
   // Sync scroll progress to canvas renders
   useMotionValueEvent(scrollYProgress, "change", (latest) => {
+    if (isMobileRef.current) {
+      const video = videoRef.current;
+      if (!video) return;
+
+      const duration = videoDurationRef.current || video.duration;
+      if (!duration || !Number.isFinite(duration)) return;
+
+      const targetTime = Math.min(duration, Math.max(0, latest * duration));
+      if (Math.abs(video.currentTime - targetTime) > 0.03) {
+        video.currentTime = targetTime;
+      }
+      return;
+    }
+
     const images = imagesRef.current;
     if (images.length === 0) return;
     const frameIndex = Math.min(
@@ -140,6 +189,7 @@ export default function Hero() {
   // Keep canvas sharp and correctly sized on resize
   useEffect(() => {
     const handleResize = () => {
+      if (isMobileRef.current) return;
       const images = imagesRef.current;
       if (canvasRef.current) {
         canvasRef.current.width = window.innerWidth;
@@ -172,10 +222,21 @@ export default function Hero() {
         {/* Canvas Background */}
         <canvas
           ref={canvasRef}
-          className="absolute inset-0 z-0 w-full h-full object-cover"
+          className="absolute inset-0 z-0 hidden h-full w-full object-cover md:block"
         />
 
-        {/* Fallback Image behind Canvas (visible only before frames load) */}
+        {/* Mobile scroll-scrubbed video background */}
+        <video
+          ref={videoRef}
+          src="/portal-vid-2.mp4"
+          className="absolute inset-0 z-0 h-full w-full object-cover md:hidden"
+          muted
+          playsInline
+          preload="auto"
+          aria-hidden="true"
+        />
+
+        {/* Fallback Image behind Canvas/Video */}
         <div className="absolute inset-0 z-[-1] select-none pointer-events-none">
           <Image
             src="/portal-frames/0001.jpg"
