@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { MoveRight } from "lucide-react";
 import Image from "next/image";
 
 export default function Footer() {
@@ -53,9 +52,9 @@ export default function Footer() {
                 </div>
 
                 <div className="flex flex-wrap justify-center gap-8 mb-8 text-sm text-neutral-500">
-                    <Link href="/privacy" className="hover:text-white transition-colors">Privacy Policy</Link>
-                    <Link href="/terms" className="hover:text-white transition-colors">Terms of Service</Link>
-                    <Link href="/support" className="hover:text-white transition-colors">Support</Link>
+                    <Link href="/privacy" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">Privacy Policy</Link>
+                    <Link href="/terms" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">Terms of Service</Link>
+                    <Link href="/support" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">Support</Link>
                 </div>
 
                 <div className="text-neutral-600 text-xs">

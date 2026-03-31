@@ -63,6 +63,7 @@ export default function Hero() {
   // Calculate opacity for fading out the text elements.
   // We want it to be fully visible at 0%, and fade to 0 opacity by 30% of the scroll.
   const contentOpacity = useTransform(scrollYProgress, [0, 0.3], [1, 0]);
+  const finalBottomTintOpacity = useTransform(scrollYProgress, [0.82, 0.96, 1], [0, 0.75, 1]);
 
   // Frame loading and rendering
   const frameCount = 109;
@@ -169,6 +170,12 @@ export default function Hero() {
             draggable={false}
           />
         </div>
+
+        {/* Bottom fade for the final frame to blend into next section */}
+        <motion.div
+          style={{ opacity: finalBottomTintOpacity }}
+          className="absolute bottom-0 left-0 right-0 h-56 z-[8] pointer-events-none bg-gradient-to-b from-transparent via-black/70 to-black"
+        />
 
         {/* Dynamic Foreground Content, fades using contentOpacity */}
         <motion.div style={{ opacity: contentOpacity }} className="relative z-10 w-full h-full">
