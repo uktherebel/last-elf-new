@@ -15,6 +15,9 @@ const inter = Inter({
 export const metadata: Metadata = {
   title: "The Last Elf - A Dark Fantasy RPG",
   description: "Hunt demons. Uncover the truth. Finish the story. A dark fantasy first-person RPG.",
+  verification: {
+    google: "0pxRxZfaozfYffGR9MjHAy-2bV1pX_-7mtlPijLlc8Q",
+  },
 };
 
 export default function RootLayout({
