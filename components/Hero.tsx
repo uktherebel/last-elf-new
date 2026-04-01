@@ -53,8 +53,6 @@ const TikTokIcon = ({ className }: { className?: string }) => (
 export default function Hero() {
   const containerRef = useRef<HTMLElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const videoRef = useRef<HTMLVideoElement>(null);
-  const videoDurationRef = useRef(0);
   const isMobileRef = useRef(false);
   const [isMobile, setIsMobile] = useState(false);
 
@@ -123,25 +121,6 @@ export default function Hero() {
   }, []);
 
   useEffect(() => {
-    const video = videoRef.current;
-    if (!video) return;
-
-    const handleMetadata = () => {
-      videoDurationRef.current = Number.isFinite(video.duration)
-        ? video.duration
-        : 0;
-    };
-
-    handleMetadata();
-    video.addEventListener("loadedmetadata", handleMetadata);
-    video.addEventListener("durationchange", handleMetadata);
-    return () => {
-      video.removeEventListener("loadedmetadata", handleMetadata);
-      video.removeEventListener("durationchange", handleMetadata);
-    };
-  }, []);
-
-  useEffect(() => {
     if (window.matchMedia("(max-width: 767px)").matches) return;
 
     // Preload all frames
@@ -207,48 +186,42 @@ export default function Hero() {
   return (
     <section
       ref={containerRef}
-      className="relative h-screen w-full bg-black md:h-[400vh]"
+      className="relative h-[100svh] w-full bg-black md:h-[400vh]"
     >
       {/* 
         This div sticks to the top of the viewport for the duration of the 400vh scroll.
         Inside it, the actual content fades while the canvas scrubs the video frames.
       */}
-      <div className="sticky top-0 h-screen w-full overflow-hidden">
+      <div className="sticky top-0 h-[100svh] w-full overflow-hidden">
         {/* Canvas Background */}
         <canvas
           ref={canvasRef}
           className="absolute inset-0 z-0 hidden h-full w-full object-cover md:block"
         />
 
-        {/* Mobile scroll-scrubbed video background */}
-        <video
-          ref={videoRef}
-          src="/portal-vid-2.mp4"
-          className="absolute inset-0 z-0 h-full w-full bg-black object-contain md:hidden"
-          poster="/RPG-Game-Capsules-22-January-2026/MainCapsule1.jpg"
-          muted
-          playsInline
-          autoPlay
-          loop
-          preload="auto"
-          aria-hidden="true"
-        />
-
-        {/* Fallback Image behind Canvas/Video */}
-        <div className="absolute inset-0 z-[-1] select-none pointer-events-none">
+        {/* Mobile static hero image */}
+        <div className="absolute inset-0 z-0 select-none pointer-events-none md:hidden">
           <Image
             src="/RPG-Game-Capsules-22-January-2026/MainCapsule1.jpg"
             alt="The Last Elf Background"
             fill
-            className="bg-black object-contain md:hidden"
+            className="bg-black object-cover"
             priority
             draggable={false}
           />
+          <div
+            aria-hidden="true"
+            className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(0,0,0,0)_38%,rgba(0,0,0,0.45)_72%,rgba(0,0,0,0.82)_100%)]"
+          />
+        </div>
+
+        {/* Desktop fallback image behind canvas */}
+        <div className="absolute inset-0 z-[-1] hidden select-none pointer-events-none md:block">
           <Image
             src="/portal-frames/0001.jpg"
             alt="The Last Elf Background"
             fill
-            className="hidden object-cover md:block"
+            className="object-cover"
             priority
             draggable={false}
           />
