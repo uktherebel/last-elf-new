@@ -330,7 +330,7 @@ export default function Hero() {
           </div>
 
           {/* Center Content */}
-          <div className="container mx-auto px-4 text-center flex flex-col items-center justify-center h-full pb-24">
+          <div className="container mx-auto flex h-full flex-col items-center justify-center px-4 pb-24 pt-20 text-center md:pt-0">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
