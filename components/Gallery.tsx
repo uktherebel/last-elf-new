@@ -1,5 +1,8 @@
+"use client";
+
 import Image from "next/image";
-import BoxCarousel, { type CarouselItem } from "@/components/fancy/carousel/box-carousel";
+import { useRef } from "react";
+import BoxCarousel, { type BoxCarouselRef, type CarouselItem } from "@/components/fancy/carousel/box-carousel";
 
 const screenshots = [
     {
@@ -36,12 +39,15 @@ const carouselItems: CarouselItem[] = screenshots.map((item, index) => ({
 }));
 
 export default function Gallery() {
+    const carouselRef = useRef<BoxCarouselRef>(null);
+
     return (
         <section className="py-24 bg-black">
             <div className="container mx-auto px-4">
                 <div className="md:hidden flex flex-col items-center">
                     <h2 className="text-3xl font-heading text-white text-center mb-8">Into the Darkness</h2>
                     <BoxCarousel
+                        ref={carouselRef}
                         items={carouselItems}
                         width={380}
                         height={214}
@@ -49,6 +55,22 @@ export default function Gallery() {
                         enableDrag={true}
                         autoPlay={true}
                     />
+                    <div className="mt-4 flex items-center gap-3">
+                        <button
+                            type="button"
+                            onClick={() => carouselRef.current?.prev()}
+                            className="px-4 py-2 rounded-md border border-white/20 text-white text-sm"
+                        >
+                            Prev
+                        </button>
+                        <button
+                            type="button"
+                            onClick={() => carouselRef.current?.next()}
+                            className="px-4 py-2 rounded-md border border-white/20 text-white text-sm"
+                        >
+                            Next
+                        </button>
+                    </div>
                 </div>
                 <div className="hidden md:block">
                     <h2 className="text-3xl font-heading text-white text-center mb-12">Into the Darkness</h2>
