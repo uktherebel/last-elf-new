@@ -164,16 +164,6 @@ export default function Hero() {
   // Sync scroll progress to canvas renders
   useMotionValueEvent(scrollYProgress, "change", (latest) => {
     if (isMobileRef.current) {
-      const video = videoRef.current;
-      if (!video) return;
-
-      const duration = videoDurationRef.current || video.duration;
-      if (!duration || !Number.isFinite(duration)) return;
-
-      const targetTime = Math.min(duration, Math.max(0, latest * duration));
-      if (Math.abs(video.currentTime - targetTime) > 0.03) {
-        video.currentTime = targetTime;
-      }
       return;
     }
 
@@ -213,7 +203,10 @@ export default function Hero() {
   }, [scrollYProgress]);
 
   return (
-    <section ref={containerRef} className="relative h-[400vh] w-full bg-black">
+    <section
+      ref={containerRef}
+      className="relative h-screen w-full bg-black md:h-[400vh]"
+    >
       {/* 
         This div sticks to the top of the viewport for the duration of the 400vh scroll.
         Inside it, the actual content fades while the canvas scrubs the video frames.
@@ -233,6 +226,8 @@ export default function Hero() {
           poster="/RPG-Game-Capsules-22-January-2026/MainCapsule1.jpg"
           muted
           playsInline
+          autoPlay
+          loop
           preload="auto"
           aria-hidden="true"
         />
