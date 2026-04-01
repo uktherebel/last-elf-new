@@ -224,7 +224,7 @@ export default function Hero() {
         <video
           ref={videoRef}
           src="/portal-vid-2.mp4"
-          className="absolute inset-0 z-0 h-full w-full object-cover md:hidden"
+          className="absolute inset-0 z-0 h-full w-full bg-black object-contain md:hidden"
           poster="/RPG-Game-Capsules-22-January-2026/MainCapsule1.jpg"
           muted
           playsInline
@@ -240,7 +240,7 @@ export default function Hero() {
             src="/RPG-Game-Capsules-22-January-2026/MainCapsule1.jpg"
             alt="The Last Elf Background"
             fill
-            className="object-cover md:hidden"
+            className="bg-black object-contain md:hidden"
             priority
             draggable={false}
           />
@@ -340,11 +340,11 @@ export default function Hero() {
               className="mb-8"
             >
               <Image
-                src="/RPGGame-Logo-Icon-MainMenu/RPGGame-Icon1.png"
+                src="/RPGGame-Logo-Icon-MainMenu/logo-new.png"
                 alt="The Last Elf Logo"
                 width={576}
                 height={576}
-                className="mx-auto drop-shadow-2xl w-auto h-auto max-h-[40vh] md:max-h-[576px]"
+                className="mx-auto h-auto w-[42vw] max-w-[170px] drop-shadow-2xl sm:w-[34vw] sm:max-w-[210px] md:w-[24vw] md:max-w-[260px] lg:w-[20vw] lg:max-w-[300px]"
               />
             </motion.div>
 
@@ -507,11 +507,11 @@ export default function Hero() {
             </motion.div>
 
             {/* Mobile Social Strip */}
-            <div className="mt-8 flex items-center justify-center md:hidden">
-              <div className="flex flex-wrap items-center justify-center gap-4 rounded-full border border-white/15 bg-black/45 px-4 py-2 text-neutral-300 backdrop-blur-sm">
+            <div className="relative z-30 mt-8 flex items-center justify-center md:hidden">
+              <div className="flex flex-wrap items-center justify-center gap-4 rounded-full border border-white/35 bg-black/70 px-4 py-2.5 text-neutral-100 shadow-[0_8px_24px_rgba(0,0,0,0.45)] backdrop-blur-md">
                 <a
                   href="https://www.tiktok.com/@lastelfgame"
-                  className="hover:text-white transition-colors"
+                  className="text-white/90 hover:text-white transition-colors"
                   target="_blank"
                   rel="noopener noreferrer"
                   title="TikTok"
@@ -520,7 +520,7 @@ export default function Hero() {
                 </a>
                 <a
                   href="https://youtube.com/@thelastelf-f3t?si=ZcNR0S7TBLHfb144"
-                  className="hover:text-white transition-colors"
+                  className="text-white/90 hover:text-white transition-colors"
                   title="YouTube"
                   target="_blank"
                   rel="noopener noreferrer"
@@ -529,7 +529,7 @@ export default function Hero() {
                 </a>
                 <a
                   href="https://www.reddit.com/user/the-last-elf/"
-                  className="hover:text-white transition-colors"
+                  className="text-white/90 hover:text-white transition-colors"
                   title="Reddit"
                   target="_blank"
                   rel="noopener noreferrer"
@@ -538,7 +538,7 @@ export default function Hero() {
                 </a>
                 <a
                   href="https://www.instagram.com/lastelfgame/"
-                  className="hover:text-white transition-colors"
+                  className="text-white/90 hover:text-white transition-colors"
                   title="Instagram"
                   target="_blank"
                   rel="noopener noreferrer"
@@ -553,7 +553,7 @@ export default function Hero() {
                 </span>
                 <a
                   href="https://x.com/lastelfgame"
-                  className="hover:text-white transition-colors"
+                  className="text-white/90 hover:text-white transition-colors"
                   title="Twitter/X"
                   target="_blank"
                   rel="noopener noreferrer"
@@ -562,7 +562,7 @@ export default function Hero() {
                 </a>
                 <a
                   href="https://www.facebook.com/lastelfgame"
-                  className="hover:text-white transition-colors"
+                  className="text-white/90 hover:text-white transition-colors"
                   title="Facebook"
                   target="_blank"
                   rel="noopener noreferrer"
