@@ -1,4 +1,5 @@
 import Hero from "@/components/Hero";
+import Dock from "@/components/Dock";
 import FeaturesGrid from "@/components/FeaturesGrid";
 import GameplayDeepDive from "@/components/GameplayDeepDive";
 import StorySection from "@/components/StorySection";
@@ -61,7 +62,7 @@ const structuredData = {
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-black text-white selection:bg-neutral-700 selection:text-white">
+    <main className="min-h-screen bg-black pb-24 text-white selection:bg-neutral-700 selection:text-white sm:pb-28">
       <h1 className="sr-only">
         The Last Elf: Offline Dark Fantasy Action RPG
       </h1>
@@ -70,6 +71,7 @@ export default function Home() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
       />
       <Hero />
+      <Dock />
       <FeaturesGrid />
       <GameplayDeepDive />
       <TrailerSection />

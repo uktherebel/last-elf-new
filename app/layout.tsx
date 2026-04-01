@@ -16,6 +16,11 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
+  icons: {
+    icon: "/RPGGame-Logo-Icon-MainMenu/logo-ios.png",
+    shortcut: "/RPGGame-Logo-Icon-MainMenu/logo-ios.png",
+    apple: "/RPGGame-Logo-Icon-MainMenu/logo-ios.png",
+  },
   title: {
     default: "The Last Elf | Offline Dark Fantasy Action RPG",
     template: `%s | ${siteName}`,

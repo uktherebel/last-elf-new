@@ -363,6 +363,24 @@ export default function Hero() {
               </p>
             </motion.div>
 
+            {/* Watch Trailer Button */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.5, delay: 0.3 }}
+              className="mb-10 flex items-center justify-center"
+            >
+              <a
+                href="https://www.youtube.com/watch?v=1z0FyfoEv-E"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="py-4 px-8 bg-transparent border border-neutral-600 hover:border-white hover:bg-white/5 text-neutral-300 hover:text-white font-heading font-bold text-xl transition-all tracking-widest uppercase flex items-center justify-center gap-2 backdrop-blur-sm shadow-[0_0_15px_rgba(255,255,255,0.05)] hover:shadow-[0_0_20px_rgba(255,255,255,0.1)] rounded-md"
+              >
+                <Youtube className="w-6 h-6" />
+                Watch trailer
+              </a>
+            </motion.div>
+
             {/* CTA Buttons */}
             <motion.div
               initial={{ opacity: 0, scale: 0.9 }}
@@ -529,22 +547,6 @@ export default function Hero() {
               </div>
             </div>
 
-            {/* Watch Trailer Button */}
-            <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.5, delay: 0.8 }}
-              className="mt-12 flex items-center justify-center"
-            >
-              <a
-                href="https://www.youtube.com/watch?v=1z0FyfoEv-E"
-                target="_blank"
-                className="py-4 px-8 bg-transparent border border-neutral-600 hover:border-white hover:bg-white/5 text-neutral-300 hover:text-white font-heading font-bold text-xl transition-all tracking-widest uppercase flex items-center justify-center gap-2 backdrop-blur-sm shadow-[0_0_15px_rgba(255,255,255,0.05)] hover:shadow-[0_0_20px_rgba(255,255,255,0.1)] rounded-md"
-              >
-                <Youtube className="w-6 h-6" />
-                Watch trailer
-              </a>
-            </motion.div>
           </div>
 
           {/* Bottom gradient for smooth transition */}
