@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
   motion,
   useScroll,
@@ -56,6 +56,7 @@ export default function Hero() {
   const videoRef = useRef<HTMLVideoElement>(null);
   const videoDurationRef = useRef(0);
   const isMobileRef = useRef(false);
+  const [isMobile, setIsMobile] = useState(false);
 
   // Create a scroll trigger
   const { scrollYProgress } = useScroll({
@@ -113,6 +114,7 @@ export default function Hero() {
     const mediaQuery = window.matchMedia("(max-width: 767px)");
     const updateIsMobile = () => {
       isMobileRef.current = mediaQuery.matches;
+      setIsMobile(mediaQuery.matches);
     };
 
     updateIsMobile();
@@ -254,13 +256,13 @@ export default function Hero() {
 
         {/* Bottom fade for the final frame to blend into next section */}
         <motion.div
-          style={{ opacity: finalBottomTintOpacity }}
+          style={{ opacity: isMobile ? 0 : finalBottomTintOpacity }}
           className="absolute bottom-0 left-0 right-0 h-56 z-[8] pointer-events-none bg-gradient-to-b from-transparent via-black/70 to-black"
         />
 
         {/* Dynamic Foreground Content, fades using contentOpacity */}
         <motion.div
-          style={{ opacity: contentOpacity }}
+          style={{ opacity: isMobile ? 1 : contentOpacity }}
           className="relative z-10 w-full h-full"
         >
           {/* Left Socials Sidebar */}
@@ -332,7 +334,7 @@ export default function Hero() {
           {/* Center Content */}
           <div className="container mx-auto flex h-full flex-col items-center justify-center px-4 pb-24 pt-20 text-center md:pt-0">
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
+              initial={isMobile ? false : { opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, ease: "easeOut" }}
               className="mb-8"
@@ -348,7 +350,7 @@ export default function Hero() {
 
             {/* Clarity Lines */}
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
+              initial={isMobile ? false : { opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
               className="flex flex-col items-center gap-2 mb-8"
@@ -360,7 +362,7 @@ export default function Hero() {
 
             {/* Watch Trailer Button */}
             <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
+              initial={isMobile ? false : { opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.5, delay: 0.3 }}
               className="mb-10 flex items-center justify-center"
@@ -378,7 +380,7 @@ export default function Hero() {
 
             {/* CTA Buttons */}
             <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
+              initial={isMobile ? false : { opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.5, delay: 0.4 }}
               className="flex flex-col md:flex-row gap-4 items-center justify-center mb-12 w-full max-w-2xl"
@@ -453,7 +455,7 @@ export default function Hero() {
 
             {/* Platform Icons */}
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
+              initial={isMobile ? false : { opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.6 }}
               className="flex items-center justify-center gap-8 md:gap-12 text-neutral-300"
@@ -506,11 +508,12 @@ export default function Hero() {
 
             {/* Mobile Social Strip */}
             <div className="mt-8 flex items-center justify-center md:hidden">
-              <div className="flex items-center gap-5 rounded-full border border-white/15 bg-black/45 px-4 py-2 text-neutral-300 backdrop-blur-sm">
+              <div className="flex flex-wrap items-center justify-center gap-4 rounded-full border border-white/15 bg-black/45 px-4 py-2 text-neutral-300 backdrop-blur-sm">
                 <a
                   href="https://www.tiktok.com/@lastelfgame"
                   className="hover:text-white transition-colors"
                   target="_blank"
+                  rel="noopener noreferrer"
                   title="TikTok"
                 >
                   <TikTokIcon className="w-5 h-5" />
@@ -520,6 +523,7 @@ export default function Hero() {
                   className="hover:text-white transition-colors"
                   title="YouTube"
                   target="_blank"
+                  rel="noopener noreferrer"
                 >
                   <Youtube className="w-5 h-5" />
                 </a>
@@ -528,6 +532,7 @@ export default function Hero() {
                   className="hover:text-white transition-colors"
                   title="Reddit"
                   target="_blank"
+                  rel="noopener noreferrer"
                 >
                   <RedditIcon className="w-5 h-5" />
                 </a>
@@ -536,8 +541,33 @@ export default function Hero() {
                   className="hover:text-white transition-colors"
                   title="Instagram"
                   target="_blank"
+                  rel="noopener noreferrer"
                 >
                   <Instagram className="w-5 h-5" />
+                </a>
+                <span
+                  className="opacity-50 cursor-not-allowed"
+                  title="Discord"
+                >
+                  <DiscordIcon className="w-5 h-5" />
+                </span>
+                <a
+                  href="https://x.com/lastelfgame"
+                  className="hover:text-white transition-colors"
+                  title="Twitter/X"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <Twitter className="w-5 h-5" />
+                </a>
+                <a
+                  href="https://www.facebook.com/lastelfgame"
+                  className="hover:text-white transition-colors"
+                  title="Facebook"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <Facebook className="w-5 h-5" />
                 </a>
               </div>
             </div>
