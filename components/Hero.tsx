@@ -344,7 +344,7 @@ export default function Hero() {
                 alt="The Last Elf Logo"
                 width={576}
                 height={576}
-                className="mx-auto h-auto w-[42vw] max-w-[170px] drop-shadow-2xl sm:w-[34vw] sm:max-w-[210px] md:w-[24vw] md:max-w-[260px] lg:w-[20vw] lg:max-w-[300px]"
+                className="mx-auto h-auto w-[30vw] max-w-[120px] drop-shadow-2xl sm:w-[24vw] sm:max-w-[150px] md:w-[18vw] md:max-w-[190px] lg:w-[15vw] lg:max-w-[220px]"
               />
             </motion.div>
 
