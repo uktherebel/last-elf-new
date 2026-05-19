@@ -93,6 +93,7 @@ const downloads: NavItem[] = [
 ]
 
 const legalLinks = [
+  { label: "Press Kit", href: "/press" },
   { label: "Support", href: "/support" },
   { label: "Terms", href: "/terms" },
   { label: "Privacy", href: "/privacy" },

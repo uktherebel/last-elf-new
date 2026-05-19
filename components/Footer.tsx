@@ -83,6 +83,9 @@ export default function Footer() {
         </div>
 
         <div className="flex flex-wrap justify-center gap-8 mb-8 text-sm text-neutral-500">
+          <Link href="/press" className="hover:text-white transition-colors">
+            Press Kit
+          </Link>
           <Link href="/privacy" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">
             Privacy Policy
           </Link>
