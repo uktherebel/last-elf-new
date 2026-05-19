@@ -27,6 +27,7 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet"
+import { appStoreUrl, googlePlayUrl, steamWishlistUrl } from "@/lib/store-links"
 import { cn } from "@/lib/utils"
 
 type NavItem = {
@@ -72,12 +73,12 @@ const downloads: NavItem[] = [
   {
     title: "iOS",
     description: "Download on the App Store",
-    href: "https://apps.apple.com/us/app/the-last-elf-dark-fantasy-rpg/id6758931119",
+    href: appStoreUrl,
   },
   {
     title: "Android",
     description: "Get it on Google Play",
-    href: "https://play.google.com/store/apps/details?id=com.conteza.games.thelastelf",
+    href: googlePlayUrl,
   },
   {
     title: "macOS",
@@ -86,8 +87,8 @@ const downloads: NavItem[] = [
   },
   {
     title: "Steam",
-    description: "Coming soon",
-    href: null,
+    description: "Wishlist on Steam",
+    href: steamWishlistUrl,
   },
 ]
 
@@ -188,7 +189,7 @@ export const Navbar5 = () => {
               className="border-amber-400/35 bg-black/20 text-amber-100 hover:border-amber-300/60 hover:bg-amber-300/15"
             >
               <a
-                href="https://apps.apple.com/us/app/the-last-elf-dark-fantasy-rpg/id6758931119"
+                href={appStoreUrl}
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -200,11 +201,24 @@ export const Navbar5 = () => {
               className="bg-amber-500 text-black hover:bg-amber-400"
             >
               <a
-                href="https://play.google.com/store/apps/details?id=com.conteza.games.thelastelf"
+                href={googlePlayUrl}
                 target="_blank"
                 rel="noopener noreferrer"
               >
                 Android
+              </a>
+            </Button>
+            <Button
+              asChild
+              variant="outline"
+              className="border-neutral-500/40 bg-neutral-950/70 text-neutral-100 hover:border-neutral-300/60 hover:bg-neutral-800"
+            >
+              <a
+                href={steamWishlistUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Steam
               </a>
             </Button>
           </div>
@@ -333,7 +347,7 @@ export const Navbar5 = () => {
                     className="border-amber-400/35 bg-black/20 text-amber-100 hover:border-amber-300/60 hover:bg-amber-300/15"
                   >
                     <a
-                      href="https://apps.apple.com/us/app/the-last-elf-dark-fantasy-rpg/id6758931119"
+                      href={appStoreUrl}
                       target="_blank"
                       rel="noopener noreferrer"
                     >
@@ -345,11 +359,24 @@ export const Navbar5 = () => {
                     className="bg-amber-500 text-black hover:bg-amber-400"
                   >
                     <a
-                      href="https://play.google.com/store/apps/details?id=com.conteza.games.thelastelf"
+                      href={googlePlayUrl}
                       target="_blank"
                       rel="noopener noreferrer"
                     >
                       Download on Android
+                    </a>
+                  </Button>
+                  <Button
+                    asChild
+                    variant="outline"
+                    className="border-neutral-500/40 bg-neutral-950/70 text-neutral-100 hover:border-neutral-300/60 hover:bg-neutral-800"
+                  >
+                    <a
+                      href={steamWishlistUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      Wishlist on Steam
                     </a>
                   </Button>
                 </div>

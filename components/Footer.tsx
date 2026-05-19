@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
+import { appStoreUrl, googlePlayUrl, steamWishlistUrl } from "@/lib/store-links";
 
 export default function Footer() {
   return (
@@ -10,7 +11,7 @@ export default function Footer() {
           <div className="flex flex-col lg:flex-row gap-6 justify-center items-center">
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
               <a
-                href="https://apps.apple.com/us/app/the-last-elf-dark-fantasy-rpg/id6758931119"
+                href={appStoreUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center justify-center gap-3 bg-white hover:bg-gray-100 border-2 border-black rounded-xl px-4 py-2 text-black transition-transform hover:scale-105 font-sans min-w-[170px]"
@@ -33,7 +34,7 @@ export default function Footer() {
               </a>
 
               <a
-                href="https://play.google.com/store/apps/details?id=com.conteza.games.thelastelf"
+                href={googlePlayUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center justify-center gap-3 bg-white hover:bg-gray-100 border-2 border-black rounded-xl px-4 py-2 text-black transition-transform hover:scale-105 font-sans min-w-[170px]"
@@ -55,23 +56,28 @@ export default function Footer() {
                 </div>
               </a>
 
-              <div className="flex items-center justify-center gap-3 bg-neutral-900 border-2 border-neutral-800 rounded-xl px-4 py-2 text-neutral-500 font-sans min-w-[170px] cursor-not-allowed opacity-60">
+              <a
+                href={steamWishlistUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center justify-center gap-3 bg-neutral-900 hover:bg-neutral-800 border-2 border-neutral-800 hover:border-neutral-600 rounded-xl px-4 py-2 text-white transition-transform hover:scale-105 font-sans min-w-[170px]"
+              >
                 <Image
                   src="/store-logos/steam-svgrepo-com.svg"
                   alt="Steam"
                   width={32}
                   height={32}
-                  className="w-8 h-8 grayscale contrast-50"
+                  className="w-8 h-8"
                 />
                 <div className="flex flex-col items-start justify-center text-left">
                   <span className="text-[11px] leading-tight font-medium uppercase tracking-wide">
-                    ON
+                    Wishlist on
                   </span>
                   <span className="text-[22px] font-semibold tracking-tight leading-none">
                     Steam
                   </span>
                 </div>
-              </div>
+              </a>
             </div>
           </div>
         </div>

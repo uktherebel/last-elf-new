@@ -7,6 +7,7 @@ import Gallery from "@/components/Gallery";
 import Footer from "@/components/Footer";
 import TrailerSection from "@/components/TrailerSection";
 import { siteUrl } from "@/lib/seo";
+import { appStoreUrl, googlePlayUrl, steamWishlistUrl } from "@/lib/store-links";
 import SeoStoryContent from "@/components/SeoStoryContent";
 import FaqSection, { faqs } from "@/components/FaqSection";
 import QuickLinksSection from "@/components/QuickLinksSection";
@@ -25,6 +26,7 @@ const structuredData = {
       operatingSystem: "iOS, Android",
       image: `${siteUrl}/RPG-Game-Capsules-22-January-2026/MainCapsule.jpg`,
       url: `${siteUrl}/`,
+      sameAs: [appStoreUrl, googlePlayUrl, steamWishlistUrl],
       trailer: {
         "@type": "VideoObject",
         name: "The Last Elf Official Trailer",
@@ -41,10 +43,8 @@ const structuredData = {
         price: "0",
         priceCurrency: "USD",
       },
-      installUrl:
-        "https://play.google.com/store/apps/details?id=com.conteza.games.thelastelf",
-      downloadUrl:
-        "https://apps.apple.com/us/app/the-last-elf-dark-fantasy-rpg/id6758931119",
+      installUrl: googlePlayUrl,
+      downloadUrl: appStoreUrl,
     },
     {
       "@type": "FAQPage",

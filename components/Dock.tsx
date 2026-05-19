@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Laptop } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { appStoreUrl, googlePlayUrl, steamWishlistUrl } from "@/lib/store-links";
 
 type DockItem = {
   name: string;
@@ -14,7 +15,7 @@ type DockItem = {
 const dockItems: DockItem[] = [
   {
     name: "iOS",
-    href: "https://apps.apple.com/us/app/the-last-elf-dark-fantasy-rpg/id6758931119",
+    href: appStoreUrl,
     imgSrc: "/store-logos/app-store-svgrepo-com.svg",
     withoutBackground: true,
   },
@@ -26,8 +27,14 @@ const dockItems: DockItem[] = [
   },
   {
     name: "Android",
-    href: "https://play.google.com/store/apps/details?id=com.conteza.games.thelastelf",
+    href: googlePlayUrl,
     imgSrc: "/store-logos/google-play-style-svgrepo-com.svg",
+    withoutBackground: true,
+  },
+  {
+    name: "Steam",
+    href: steamWishlistUrl,
+    imgSrc: "/store-logos/steam-svgrepo-com.svg",
     withoutBackground: true,
   },
 ];
@@ -38,7 +45,7 @@ export function Dock() {
       aria-label="Platform dock"
       className="pointer-events-none fixed inset-x-0 bottom-2 z-[55] flex justify-center px-2 pb-[env(safe-area-inset-bottom)] sm:bottom-3"
     >
-      <div className="pointer-events-auto w-full max-w-md rounded-3xl border border-amber-300/25 bg-neutral-900/70 p-2 shadow-[0_18px_50px_-24px_rgba(0,0,0,0.9)] backdrop-blur-md">
+      <div className="pointer-events-auto w-full max-w-lg rounded-3xl border border-amber-300/25 bg-neutral-900/70 p-2 shadow-[0_18px_50px_-24px_rgba(0,0,0,0.9)] backdrop-blur-md">
         <div className="flex items-end justify-center gap-1 overflow-x-auto px-1 py-1 sm:gap-2">
           {dockItems.map((item) => (
             <AppIcon

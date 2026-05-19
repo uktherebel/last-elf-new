@@ -7,6 +7,7 @@ import {
     Youtube,
     Instagram,
 } from "lucide-react";
+import { googlePlayUrl, steamWishlistUrl } from "@/lib/store-links";
 
 const DiscordIcon = ({ className }: { className?: string }) => (
     <svg
@@ -97,7 +98,7 @@ export default function AndroidPage() {
                         className="flex items-center justify-center gap-8 text-neutral-300"
                     >
                         <a
-                            href="https://play.google.com/store/apps/details?id=com.conteza.games.thelastelf"
+                            href={googlePlayUrl}
                             target="_blank"
                             rel="noopener noreferrer"
                             className="flex items-center gap-2 hover:text-white transition-colors"
@@ -111,6 +112,22 @@ export default function AndroidPage() {
                                 className="h-8 w-8"
                             />
                             <span className="font-bold tracking-wider text-xl">Android</span>
+                        </a>
+                        <a
+                            href={steamWishlistUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="flex items-center gap-2 hover:text-white transition-colors"
+                            title="Wishlist on Steam"
+                        >
+                            <Image
+                                src="/store-logos/steam-svgrepo-com.svg"
+                                alt="Steam"
+                                width={32}
+                                height={32}
+                                className="h-8 w-8 brightness-0 invert"
+                            />
+                            <span className="font-bold tracking-wider text-xl">Steam</span>
                         </a>
                     </motion.div>
                 </div>

@@ -9,6 +9,7 @@ import {
 } from "framer-motion";
 import Image from "next/image";
 import { Youtube, Instagram, Facebook, Twitter } from "lucide-react";
+import { appStoreUrl, googlePlayUrl, steamWishlistUrl } from "@/lib/store-links";
 
 // Custom Brand Icons
 const DiscordIcon = ({ className }: { className?: string }) => (
@@ -361,8 +362,9 @@ export default function Hero() {
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 {/* App Store Badge */}
                 <a
-                  href="https://apps.apple.com/us/app/the-last-elf-dark-fantasy-rpg/id6758931119"
+                  href={appStoreUrl}
                   target="_blank"
+                  rel="noopener noreferrer"
                   className="flex items-center justify-center gap-3 bg-white hover:bg-gray-100 border-2 border-black rounded-xl px-4 py-2 text-black transition-transform hover:scale-105 font-sans min-w-[170px]"
                 >
                   <Image
@@ -384,8 +386,9 @@ export default function Hero() {
 
                 {/* Google Play Badge */}
                 <a
-                  href="https://play.google.com/store/apps/details?id=com.conteza.games.thelastelf"
+                  href={googlePlayUrl}
                   target="_blank"
+                  rel="noopener noreferrer"
                   className="flex items-center justify-center gap-3 bg-white hover:bg-gray-100 border-2 border-black rounded-xl px-4 py-2 text-black transition-transform hover:scale-105 font-sans min-w-[170px]"
                 >
                   <Image
@@ -406,23 +409,28 @@ export default function Hero() {
                 </a>
 
                 {/* Steam Badge */}
-                <div className="flex items-center justify-center gap-3 bg-neutral-900 border-2 border-neutral-800 rounded-xl px-4 py-2 text-neutral-500 font-sans min-w-[170px] cursor-not-allowed opacity-60">
+                <a
+                  href={steamWishlistUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center justify-center gap-3 bg-neutral-900 hover:bg-neutral-800 border-2 border-neutral-800 hover:border-neutral-600 rounded-xl px-4 py-2 text-white transition-transform hover:scale-105 font-sans min-w-[170px]"
+                >
                   <Image
                     src="/store-logos/steam-svgrepo-com.svg"
                     alt="Steam"
                     width={32}
                     height={32}
-                    className="w-8 h-8 grayscale contrast-50"
+                    className="w-8 h-8"
                   />
                   <div className="flex flex-col items-start justify-center text-left">
                     <span className="text-[11px] leading-tight font-medium uppercase tracking-wide">
-                      ON
+                      Wishlist on
                     </span>
                     <span className="text-[22px] font-semibold tracking-tight leading-none">
                       Steam
                     </span>
                   </div>
-                </div>
+                </a>
               </div>
             </motion.div>
 
@@ -446,9 +454,10 @@ export default function Hero() {
                 </span>
               </span>
               <a
-                href="https://apps.apple.com/us/app/the-last-elf-dark-fantasy-rpg/id6758931119"
+                href={appStoreUrl}
                 className="flex items-center gap-2 hover:text-white transition-colors cursor-pointer group"
                 target="_blank"
+                rel="noopener noreferrer"
               >
                 <Image
                   src="/store-logos/app-store-svgrepo-com.svg"
@@ -462,9 +471,10 @@ export default function Hero() {
                 </span>
               </a>
               <a
-                href="https://play.google.com/store/apps/details?id=com.conteza.games.thelastelf"
+                href={googlePlayUrl}
                 className="flex items-center gap-2 hover:text-white transition-colors cursor-pointer group"
                 target="_blank"
+                rel="noopener noreferrer"
               >
                 <Image
                   src="/store-logos/google-play-style-svgrepo-com.svg"
@@ -475,6 +485,23 @@ export default function Hero() {
                 />
                 <span className="font-bold tracking-wider hidden sm:block">
                   Android
+                </span>
+              </a>
+              <a
+                href={steamWishlistUrl}
+                className="flex items-center gap-2 hover:text-white transition-colors cursor-pointer group"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Image
+                  src="/store-logos/steam-svgrepo-com.svg"
+                  alt="Steam"
+                  width={32}
+                  height={32}
+                  className="w-8 h-8 grayscale group-hover:grayscale-0 transition-all duration-300 group-hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.5)]"
+                />
+                <span className="font-bold tracking-wider hidden sm:block">
+                  Steam
                 </span>
               </a>
             </motion.div>
