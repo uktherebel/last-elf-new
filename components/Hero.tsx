@@ -1,12 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
-import {
-  motion,
-  useScroll,
-  useTransform,
-  useMotionValueEvent,
-} from "framer-motion";
+import { motion } from "framer-motion";
 import Image from "next/image";
 import { Youtube, Instagram, Facebook, Twitter } from "lucide-react";
 import { appStoreUrl, googlePlayUrl, steamWishlistUrl } from "@/lib/store-links";
@@ -52,194 +46,31 @@ const TikTokIcon = ({ className }: { className?: string }) => (
 );
 
 export default function Hero() {
-  const containerRef = useRef<HTMLElement>(null);
-  const canvasRef = useRef<HTMLCanvasElement>(null);
-  const isMobileRef = useRef(false);
-  const [isMobile, setIsMobile] = useState(false);
-
-  // Create a scroll trigger
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start start", "end end"],
-  });
-
-  // Calculate opacity for fading out the text elements.
-  // We want it to be fully visible at 0%, and fade to 0 opacity by 30% of the scroll.
-  const contentOpacity = useTransform(scrollYProgress, [0, 0.3], [1, 0]);
-  const finalBottomTintOpacity = useTransform(
-    scrollYProgress,
-    [0.82, 0.96, 1],
-    [0, 0.75, 1],
-  );
-
-  // Frame loading and rendering
-  const frameCount = 109;
-  const currentFrame = (index: number) =>
-    `/portal-frames/${index.toString().padStart(4, "0")}.jpg`;
-
-  const imagesRef = useRef<HTMLImageElement[]>([]);
-
-  const renderFrame = (
-    index: number,
-    imgArray: HTMLImageElement[] = imagesRef.current,
-  ) => {
-    if (!canvasRef.current || !imgArray[index]) return;
-    const canvas = canvasRef.current;
-    const ctx = canvas.getContext("2d");
-    if (!ctx) return;
-
-    const img = imgArray[index];
-
-    // Ensure image has actual dimensions before trying to draw
-    if (!img.naturalWidth) return;
-
-    // Mimic 'object-fit: cover' logic for the canvas
-    const cw = canvas.width;
-    const ch = canvas.height;
-    const iw = img.naturalWidth;
-    const ih = img.naturalHeight;
-
-    const scale = Math.max(cw / iw, ch / ih);
-    const w = iw * scale;
-    const h = ih * scale;
-    const x = (cw - w) / 2;
-    const y = (ch - h) / 2;
-
-    ctx.clearRect(0, 0, cw, ch);
-    ctx.drawImage(img, x, y, w, h);
-  };
-
-  useEffect(() => {
-    const mediaQuery = window.matchMedia("(max-width: 767px)");
-    const updateIsMobile = () => {
-      isMobileRef.current = mediaQuery.matches;
-      setIsMobile(mediaQuery.matches);
-    };
-
-    updateIsMobile();
-    mediaQuery.addEventListener("change", updateIsMobile);
-    return () => mediaQuery.removeEventListener("change", updateIsMobile);
-  }, []);
-
-  useEffect(() => {
-    if (window.matchMedia("(max-width: 767px)").matches) return;
-
-    // Preload all frames
-    const loadedImages: HTMLImageElement[] = [];
-    for (let i = 1; i <= frameCount; i++) {
-      const img = new window.Image();
-      img.src = currentFrame(i);
-      loadedImages.push(img);
-    }
-    imagesRef.current = loadedImages;
-
-    // Render the first frame immediately (or when it finishes loading)
-    if (loadedImages[0]?.complete) {
-      renderFrame(0, loadedImages);
-    } else if (loadedImages[0]) {
-      loadedImages[0].onload = () => {
-        renderFrame(0, loadedImages);
-      };
-    }
-  }, []);
-
-  // Sync scroll progress to canvas renders
-  useMotionValueEvent(scrollYProgress, "change", (latest) => {
-    if (isMobileRef.current) {
-      return;
-    }
-
-    const images = imagesRef.current;
-    if (images.length === 0) return;
-    const frameIndex = Math.min(
-      images.length - 1,
-      Math.floor(latest * frameCount),
-    );
-    renderFrame(frameIndex);
-  });
-
-  // Keep canvas sharp and correctly sized on resize
-  useEffect(() => {
-    const handleResize = () => {
-      if (isMobileRef.current) return;
-      const images = imagesRef.current;
-      if (canvasRef.current) {
-        canvasRef.current.width = window.innerWidth;
-        canvasRef.current.height = window.innerHeight;
-        if (images.length === 0) return;
-        // Redraw current frame to match new dimensions
-        renderFrame(
-          Math.min(
-            images.length - 1,
-            Math.floor(scrollYProgress.get() * frameCount),
-          ),
-        );
-      }
-    };
-
-    // Initial size setup
-    handleResize();
-
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, [scrollYProgress]);
-
   return (
-    <section
-      ref={containerRef}
-      className="relative h-[100svh] w-full bg-black md:h-[400vh]"
-    >
-      {/* 
-        This div sticks to the top of the viewport for the duration of the 400vh scroll.
-        Inside it, the actual content fades while the canvas scrubs the video frames.
-      */}
-      <div className="sticky top-0 h-[100svh] w-full overflow-hidden">
-        {/* Canvas Background */}
-        <canvas
-          ref={canvasRef}
-          className="absolute inset-0 z-0 hidden h-full w-full object-cover md:block"
+    <section className="relative h-[100svh] w-full overflow-hidden bg-black">
+      <div className="absolute inset-0 z-0 select-none pointer-events-none">
+        <video
+          className="h-full w-full object-cover"
+          src="/movies/web_hero.mp4"
+          autoPlay
+          loop
+          muted
+          playsInline
+          preload="auto"
+          aria-label="The Last Elf hero gameplay video"
         />
-
-        {/* Mobile static hero image */}
-        <div className="absolute inset-0 z-0 select-none pointer-events-none md:hidden">
-          <Image
-            src="/RPG-Game-Capsules-22-January-2026/MainCapsule1.jpg"
-            alt="The Last Elf Background"
-            fill
-            className="bg-black object-cover"
-            priority
-            draggable={false}
-          />
-          <div
-            aria-hidden="true"
-            className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(0,0,0,0)_38%,rgba(0,0,0,0.45)_72%,rgba(0,0,0,0.82)_100%)]"
-          />
-        </div>
-
-        {/* Desktop fallback image behind canvas */}
-        <div className="absolute inset-0 z-[-1] hidden select-none pointer-events-none md:block">
-          <Image
-            src="/portal-frames/0001.jpg"
-            alt="The Last Elf Background"
-            fill
-            className="object-cover"
-            priority
-            draggable={false}
-          />
-        </div>
-
-        {/* Bottom fade for the final frame to blend into next section */}
-        <motion.div
-          style={{ opacity: isMobile ? 0 : finalBottomTintOpacity }}
-          className="absolute bottom-0 left-0 right-0 h-56 z-[8] pointer-events-none bg-gradient-to-b from-transparent via-black/70 to-black"
+        <div
+          aria-hidden="true"
+          className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(0,0,0,0)_34%,rgba(0,0,0,0.5)_72%,rgba(0,0,0,0.9)_100%)]"
         />
+        <div
+          aria-hidden="true"
+          className="absolute inset-0 bg-black/20"
+        />
+      </div>
 
-        {/* Dynamic Foreground Content, fades using contentOpacity */}
-        <motion.div
-          style={{ opacity: isMobile ? 1 : contentOpacity }}
-          className="relative z-10 w-full h-full"
-        >
-          {/* Left Socials Sidebar */}
+      <div className="relative z-10 h-full w-full">
+        {/* Left Socials Sidebar */}
           <div className="absolute left-8 bottom-0 top-0 flex flex-col justify-center items-center z-20 hidden md:flex">
             <div className="flex flex-col gap-6 items-center">
               <span className="text-neutral-400 text-xs font-bold tracking-[0.3em] uppercase -rotate-90 whitespace-nowrap mb-8">
@@ -308,7 +139,7 @@ export default function Hero() {
           {/* Center Content */}
           <div className="container mx-auto flex h-full flex-col items-center justify-center px-4 pb-24 pt-20 text-center md:pt-0">
             <motion.div
-              initial={isMobile ? false : { opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, ease: "easeOut" }}
               className="mb-8"
@@ -324,7 +155,7 @@ export default function Hero() {
 
             {/* Clarity Lines */}
             <motion.div
-              initial={isMobile ? false : { opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
               className="flex flex-col items-center gap-2 mb-8"
@@ -336,7 +167,7 @@ export default function Hero() {
 
             {/* Watch Trailer Button */}
             <motion.div
-              initial={isMobile ? false : { opacity: 0, scale: 0.9 }}
+              initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.5, delay: 0.3 }}
               className="mb-10 flex items-center justify-center"
@@ -354,7 +185,7 @@ export default function Hero() {
 
             {/* CTA Buttons */}
             <motion.div
-              initial={isMobile ? false : { opacity: 0, scale: 0.9 }}
+              initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.5, delay: 0.4 }}
               className="flex flex-col md:flex-row gap-4 items-center justify-center mb-12 w-full max-w-2xl"
@@ -436,7 +267,7 @@ export default function Hero() {
 
             {/* Platform Icons */}
             <motion.div
-              initial={isMobile ? false : { opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.6 }}
               className="flex items-center justify-center gap-8 md:gap-12 text-neutral-300"
@@ -577,13 +408,7 @@ export default function Hero() {
           {/* Bottom gradient for smooth transition */}
           <div className="absolute bottom-0 left-0 right-0 h-48 bg-gradient-to-b from-transparent to-black z-10 pointer-events-none" />
 
-          <div className="absolute bottom-2 left-0 right-0 text-center z-20">
-            <p className="text-neutral-500 text-xs tracking-[0.3em] uppercase animate-pulse">
-              Scroll down for more
-            </p>
-          </div>
-        </motion.div>
-      </div>
+        </div>
     </section>
   );
 }
