@@ -185,40 +185,65 @@ export const Navbar5 = () => {
           <div className="hidden items-center gap-3 lg:flex">
             <Button
               asChild
-              variant="outline"
-              className="border-amber-400/35 bg-black/20 text-amber-100 hover:border-amber-300/60 hover:bg-amber-300/15"
+              variant="ghost"
+              className="h-10 w-10 rounded-none border-0 bg-transparent p-0 shadow-none hover:bg-transparent focus-visible:ring-1 focus-visible:ring-amber-300"
             >
               <a
                 href={appStoreUrl}
                 target="_blank"
                 rel="noopener noreferrer"
+                aria-label="Download on iOS"
+                title="Download on iOS"
               >
-                iOS
+                <Image
+                  src="/store-icons/Apple.svg"
+                  alt=""
+                  width={24}
+                  height={24}
+                  className="h-7 w-7 brightness-0 invert"
+                />
               </a>
             </Button>
             <Button
               asChild
-              className="bg-amber-500 text-black hover:bg-amber-400"
+              variant="ghost"
+              className="h-10 w-10 rounded-none border-0 bg-transparent p-0 shadow-none hover:bg-transparent focus-visible:ring-1 focus-visible:ring-amber-300"
             >
               <a
                 href={googlePlayUrl}
                 target="_blank"
                 rel="noopener noreferrer"
+                aria-label="Download on Android"
+                title="Download on Android"
               >
-                Android
+                <Image
+                  src="/store-icons/Playstore.svg"
+                  alt=""
+                  width={24}
+                  height={24}
+                  className="h-7 w-7"
+                />
               </a>
             </Button>
             <Button
               asChild
-              variant="outline"
-              className="border-neutral-500/40 bg-neutral-950/70 text-neutral-100 hover:border-neutral-300/60 hover:bg-neutral-800"
+              variant="ghost"
+              className="h-10 w-10 rounded-none border-0 bg-transparent p-0 shadow-none hover:bg-transparent focus-visible:ring-1 focus-visible:ring-amber-300"
             >
               <a
                 href={steamWishlistUrl}
                 target="_blank"
                 rel="noopener noreferrer"
+                aria-label="Wishlist on Steam"
+                title="Wishlist on Steam"
               >
-                Steam
+                <Image
+                  src="/store-logos/steam-svgrepo-com.svg"
+                  alt=""
+                  width={100}
+                  height={100}
+                  className="h-8 w-8"
+                />
               </a>
             </Button>
           </div>

@@ -7,32 +7,32 @@ const slides = [
   {
     title: "Offline Action RPG Adventure",
     description:
-      "Enjoy an offline single-player action RPG focused on combat, exploration, progression, and story in a dangerous dark fantasy world.",
-    image: "/crousel-imgs/offline-adventure-rpg.jpg",
+      "Ride across open paths, forests, and ruined settlements as your journey pushes deeper into a dangerous fantasy world.",
+    image: "/crousel-imgs/12.webp",
   },
   {
     title: "Sword Combat and Hack and Slash Battles",
     description:
-      "Fight in real-time with responsive sword combat and fast hack and slash gameplay built around timing, movement, and skill.",
-    image: "/crousel-imgs/sword-combat.png",
+      "Fight in real time through castle corridors, using quick movement and close-range strikes to survive monster attacks.",
+    image: "/crousel-imgs/10.webp",
   },
   {
     title: "Hunt Monsters and Defeat Demon Bosses",
     description:
-      "Hunt savage beasts, destroy corrupted creatures, and survive powerful demon boss encounters that test reflexes and strategy.",
-    image: "/crousel-imgs/hunt-monsters-demon-bosses.png",
+      "Enter ruined halls and face towering demons that turn every encounter into a tense boss fight.",
+    image: "/crousel-imgs/5.webp",
   },
   {
     title: "Dark Fantasy Story and Cinematic World",
     description:
-      "Experience a story-driven dark fantasy adventure with immersive world design, dramatic atmosphere, and memorable locations.",
-    image: "/crousel-imgs/dark-fantasy-story.png",
+      "Step toward guarded portals, burning castles, and cursed locations built for a cinematic dark fantasy adventure.",
+    image: "/crousel-imgs/9.webp",
   },
   {
     title: "Arena Battles and Survival Trials",
     description:
-      "Enter brutal arena fights where enemy waves and elite threats push your combat mastery to the limit.",
-    image: "/crousel-imgs/arena-v2.png",
+      "Enter the arena and challenge massive enemies whose weapons and timing demand precise combat choices.",
+    image: "/crousel-imgs/11.webp",
   },
 ];
 

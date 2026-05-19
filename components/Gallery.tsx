@@ -1,92 +1,91 @@
 "use client";
 
-import Image from "next/image";
-import { useRef } from "react";
-import BoxCarousel, { type BoxCarouselRef, type CarouselItem } from "@/components/fancy/carousel/box-carousel";
+import {
+    CircularGallery,
+    type GalleryItem,
+} from "@/components/ui/circular-gallery";
 
-const screenshots = [
+const galleryData: GalleryItem[] = [
     {
-        src: "/Screenshots - Refined/dark-fantasy-castle-approach.png",
-        alt: "The Last Elf exploring a ruined dark fantasy castle approach",
+        common: "Castle Approach",
+        binomial: "A ruined path into the dark kingdom",
+        photo: {
+            url: "/Screenshots - Refined/dark-fantasy-castle-approach.png",
+            text: "The Last Elf exploring a ruined dark fantasy castle approach",
+            pos: "50% 50%",
+            by: "The Last Elf",
+        },
     },
     {
-        src: "/Screenshots - Refined/elf-warrior-combat-stance.png",
-        alt: "The Last Elf warrior preparing for a real-time sword fight",
+        common: "Warrior Stance",
+        binomial: "Ready for real-time sword combat",
+        photo: {
+            url: "/Screenshots - Refined/elf-warrior-combat-stance.png",
+            text: "The Last Elf warrior preparing for a real-time sword fight",
+            pos: "50% 50%",
+            by: "The Last Elf",
+        },
     },
     {
-        src: "/Screenshots - Refined/monster-horde-night-battle.png",
-        alt: "The Last Elf battling monster hordes at night",
+        common: "Night Battle",
+        binomial: "Monster hordes close in after sunset",
+        photo: {
+            url: "/Screenshots - Refined/monster-horde-night-battle.png",
+            text: "The Last Elf battling monster hordes at night",
+            pos: "50% 50%",
+            by: "The Last Elf",
+        },
     },
     {
-        src: "/Screenshots - Refined/dungeon-hack-and-slash-scene.png",
-        alt: "Hack and slash combat scene in a dungeon-style area",
+        common: "Dungeon Clash",
+        binomial: "Hack and slash combat in tight ruins",
+        photo: {
+            url: "/Screenshots - Refined/dungeon-hack-and-slash-scene.png",
+            text: "Hack and slash combat scene in a dungeon-style area",
+            pos: "50% 50%",
+            by: "The Last Elf",
+        },
     },
     {
-        src: "/Screenshots - Refined/cursed-lands-demon-encounter.png",
-        alt: "Demon encounter in the cursed lands of The Last Elf",
+        common: "Demon Encounter",
+        binomial: "A corrupted enemy waits in the cursed lands",
+        photo: {
+            url: "/Screenshots - Refined/cursed-lands-demon-encounter.png",
+            text: "Demon encounter in the cursed lands of The Last Elf",
+            pos: "50% 50%",
+            by: "The Last Elf",
+        },
     },
     {
-        src: "/Screenshots - Refined/ruined-world-exploration-elf.png",
-        alt: "Offline RPG exploration scene in the ruined world of The Last Elf",
+        common: "Ruined World",
+        binomial: "Offline exploration across a fallen realm",
+        photo: {
+            url: "/Screenshots - Refined/ruined-world-exploration-elf.png",
+            text: "Offline RPG exploration scene in the ruined world of The Last Elf",
+            pos: "50% 50%",
+            by: "The Last Elf",
+        },
     },
 ];
 
-const carouselItems: CarouselItem[] = screenshots.map((item, index) => ({
-    id: `screenshot-${index + 1}`,
-    type: "image",
-    src: item.src,
-    alt: item.alt,
-}));
-
 export default function Gallery() {
-    const carouselRef = useRef<BoxCarouselRef>(null);
-
     return (
-        <section className="py-24 bg-black">
-            <div className="container mx-auto px-4">
-                <div className="md:hidden flex flex-col items-center">
-                    <h2 className="text-3xl font-heading text-white text-center mb-8">Into the Darkness</h2>
-                    <BoxCarousel
-                        ref={carouselRef}
-                        items={carouselItems}
-                        width={380}
-                        height={214}
-                        direction="right"
-                        enableDrag={true}
-                        autoPlay={true}
-                    />
-                    <div className="mt-4 flex items-center gap-3">
-                        <button
-                            type="button"
-                            onClick={() => carouselRef.current?.prev()}
-                            className="px-4 py-2 rounded-md border border-white/20 text-white text-sm"
-                        >
-                            Prev
-                        </button>
-                        <button
-                            type="button"
-                            onClick={() => carouselRef.current?.next()}
-                            className="px-4 py-2 rounded-md border border-white/20 text-white text-sm"
-                        >
-                            Next
-                        </button>
-                    </div>
+        <section className="h-[420vh] bg-black text-white">
+            <div className="sticky top-0 flex h-screen flex-col items-center justify-center overflow-hidden px-4">
+                <div className="pointer-events-none absolute top-16 z-10 text-center">
+                    <h2 className="text-3xl font-heading text-white md:text-4xl">
+                        Into the Darkness
+                    </h2>
+                    <p className="mt-3 text-sm text-neutral-400">
+                        Scroll to rotate the gallery
+                    </p>
                 </div>
-                <div className="hidden md:block">
-                    <h2 className="text-3xl font-heading text-white text-center mb-12">Into the Darkness</h2>
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                        {screenshots.map((item, index) => (
-                            <div key={index} className="relative aspect-video group overflow-hidden rounded-md border border-white/10">
-                                <Image
-                                    src={item.src}
-                                    alt={item.alt}
-                                    fill
-                                    className="object-cover transition-transform duration-500 group-hover:scale-110"
-                                />
-                                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors" />
-                            </div>
-                        ))}
-                    </div>
+                <div className="h-full w-full pt-16">
+                    <CircularGallery
+                        items={galleryData}
+                        radius={520}
+                        autoRotateSpeed={0.025}
+                    />
                 </div>
             </div>
         </section>
