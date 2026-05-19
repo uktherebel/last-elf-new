@@ -55,14 +55,11 @@ const screenshots: ZipAsset[] = [
 ].map(([publicPath, zipPath]) => ({ publicPath, zipPath }));
 
 const logosAndArt: ZipAsset[] = [
-  ["RPGGame-Logo-Icon-MainMenu/logo-new.png", "logos/logo-new.png"],
   ["RPGGame-Logo-Icon-MainMenu/logo-ios.png", "logos/logo-ios.png"],
   ["press/logos/512.png", "logos/512.png"],
   ["press/logos/512-new.png", "logos/512-new.png"],
   ["press/logos/logo-ios.png", "logos/press-logo-ios.png"],
   ["RPGGame-Logo-Icon-MainMenu/RPG-Logo.png", "logos/RPG-Logo.png"],
-  ["RPGGame-Logo-Icon-MainMenu/RPGGame-Icon.png", "logos/RPGGame-Icon.png"],
-  ["RPGGame-Logo-Icon-MainMenu/RPGGame-Icon1.png", "logos/RPGGame-Icon1.png"],
   ["RPGGame-Logo-Icon-MainMenu/last-elf-logo.png", "logos/last-elf-logo.png"],
   ["press/art/RPG-Game-Youtube-Thumbnail-2.jpg", "key-art/RPG-Game-Youtube-Thumbnail-2.jpg"],
   ["press/art/Main-Capsule1.jpg", "key-art/Main-Capsule1.jpg"],

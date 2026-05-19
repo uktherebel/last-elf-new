@@ -259,12 +259,6 @@ const features = [
 
 const pressAssets = [
   {
-    title: "Logo PNG",
-    src: "/RPGGame-Logo-Icon-MainMenu/logo-new.png",
-    href: "/RPGGame-Logo-Icon-MainMenu/logo-new.png",
-    alt: "The Last Elf logo PNG",
-  },
-  {
     title: "Logo transparent",
     src: "/RPGGame-Logo-Icon-MainMenu/logo-ios.png",
     href: "/RPGGame-Logo-Icon-MainMenu/logo-ios.png",
@@ -293,18 +287,6 @@ const pressAssets = [
     src: "/RPGGame-Logo-Icon-MainMenu/RPG-Logo.png",
     href: "/RPGGame-Logo-Icon-MainMenu/RPG-Logo.png",
     alt: "The Last Elf RPG logo asset",
-  },
-  {
-    title: "Game icon",
-    src: "/RPGGame-Logo-Icon-MainMenu/RPGGame-Icon.png",
-    href: "/RPGGame-Logo-Icon-MainMenu/RPGGame-Icon.png",
-    alt: "The Last Elf game icon",
-  },
-  {
-    title: "Alternate icon",
-    src: "/RPGGame-Logo-Icon-MainMenu/RPGGame-Icon1.png",
-    href: "/RPGGame-Logo-Icon-MainMenu/RPGGame-Icon1.png",
-    alt: "The Last Elf alternate game icon",
   },
   {
     title: "Last Elf logo",
