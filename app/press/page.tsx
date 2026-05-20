@@ -65,42 +65,42 @@ const brollZip = "/press-assets/TheLastElf_BRoll.zip";
 
 const primaryScreenshots = [
   {
-    caption: "Ruined Castle",
+    caption: "Stunning Visuals",
     src: "/crousel-imgs/1.webp",
     alt: "The Last Elf ruined castle environment screenshot",
   },
   {
-    caption: "Cursed Approach",
+    caption: "Possessed Animals",
     src: "/crousel-imgs/2.webp",
     alt: "The Last Elf cursed world approach screenshot",
   },
   {
-    caption: "Monster Encounter",
+    caption: "Human Traitor",
     src: "/crousel-imgs/3.webp",
     alt: "The Last Elf monster encounter screenshot",
   },
   {
-    caption: "Dungeon Passage",
+    caption: "Demon Lord Battle",
     src: "/crousel-imgs/5.webp",
     alt: "The Last Elf dungeon passage screenshot",
   },
   {
-    caption: "Dungeon Fight",
+    caption: "Burning Castle",
     src: "/crousel-imgs/6.webp",
     alt: "The Last Elf dungeon fight screenshot",
   },
   {
-    caption: "Forgotten Lands",
+    caption: "Hack and Slash",
     src: "/crousel-imgs/8.webp",
     alt: "The Last Elf forgotten lands exploration screenshot",
   },
   {
-    caption: "Forest Ruins",
+    caption: "Portal Into the Demon World",
     src: "/crousel-imgs/9.webp",
     alt: "The Last Elf forest ruins screenshot",
   },
   {
-    caption: "Demon Boss",
+    caption: "Stealth Assassination",
     src: "/crousel-imgs/10.webp",
     alt: "The Last Elf demon boss battle screenshot",
   },
