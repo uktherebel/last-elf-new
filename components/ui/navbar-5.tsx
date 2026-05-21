@@ -2,7 +2,7 @@
 
 import Image from "next/image"
 import Link from "next/link"
-import { MenuIcon } from "lucide-react"
+import { MenuIcon, Monitor } from "lucide-react"
 
 import {
   Accordion,
@@ -27,7 +27,12 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet"
-import { appStoreUrl, googlePlayUrl, steamWishlistUrl } from "@/lib/store-links"
+import {
+  appStoreUrl,
+  googlePlayUrl,
+  macAppStoreUrl,
+  steamWishlistUrl,
+} from "@/lib/store-links"
 import { cn } from "@/lib/utils"
 
 type NavItem = {
@@ -82,8 +87,8 @@ const downloads: NavItem[] = [
   },
   {
     title: "macOS",
-    description: "Coming soon",
-    href: null,
+    description: "Download on the Mac App Store",
+    href: macAppStoreUrl,
   },
   {
     title: "Steam",
@@ -203,6 +208,21 @@ export const Navbar5 = () => {
                   height={24}
                   className="h-7 w-7 brightness-0 invert"
                 />
+              </a>
+            </Button>
+            <Button
+              asChild
+              variant="ghost"
+              className="h-10 w-10 rounded-none border-0 bg-transparent p-0 shadow-none hover:bg-transparent focus-visible:ring-1 focus-visible:ring-amber-300"
+            >
+              <a
+                href={macAppStoreUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Download on Mac"
+                title="Download on Mac"
+              >
+                <Monitor className="h-7 w-7 text-white" />
               </a>
             </Button>
             <Button
@@ -378,6 +398,19 @@ export const Navbar5 = () => {
                       rel="noopener noreferrer"
                     >
                       Download on iOS
+                    </a>
+                  </Button>
+                  <Button
+                    asChild
+                    variant="outline"
+                    className="border-amber-400/35 bg-black/20 text-amber-100 hover:border-amber-300/60 hover:bg-amber-300/15"
+                  >
+                    <a
+                      href={macAppStoreUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      Download on Mac
                     </a>
                   </Button>
                   <Button

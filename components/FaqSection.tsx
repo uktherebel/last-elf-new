@@ -23,9 +23,9 @@ const faqs = [
       "It features hack and slash combat, monster hunting, arena battles, boss fights, exploration, and progression.",
   },
   {
-    question: "Can I play The Last Elf on iOS and Android?",
+    question: "Can I play The Last Elf on iOS, Mac, and Android?",
     answer:
-      "Yes. The game is available on iOS and Android through the App Store and Google Play.",
+      "Yes. The Last Elf: Dark Fantasy RPG is available on iOS, iPadOS, and Mac through the App Store, and on Android through Google Play.",
   },
   {
     question: "Does The Last Elf have a story?",

@@ -7,7 +7,13 @@ import Gallery from "@/components/Gallery";
 import Footer from "@/components/Footer";
 import TrailerSection from "@/components/TrailerSection";
 import { siteUrl } from "@/lib/seo";
-import { appStoreUrl, googlePlayUrl, steamWishlistUrl } from "@/lib/store-links";
+import {
+  appStoreDisplayName,
+  appStoreUrl,
+  googlePlayUrl,
+  macAppStoreUrl,
+  steamWishlistUrl,
+} from "@/lib/store-links";
 import SeoStoryContent from "@/components/SeoStoryContent";
 import FaqSection, { faqs } from "@/components/FaqSection";
 import QuickLinksSection from "@/components/QuickLinksSection";
@@ -17,13 +23,13 @@ const structuredData = {
   "@graph": [
     {
       "@type": "VideoGame",
-      name: "The Last Elf",
+      name: appStoreDisplayName,
       description:
         "Offline dark fantasy action RPG with story-driven adventure, sword combat, monster hunting, arena battles, and demon boss fights.",
       genre: ["Action RPG", "Dark Fantasy", "Hack and Slash"],
       playMode: "SinglePlayer",
       applicationCategory: "Game",
-      operatingSystem: "iOS, Android",
+      operatingSystem: "iOS, iPadOS, macOS, Android",
       image: `${siteUrl}/RPG-Game-Capsules-22-January-2026/MainCapsule.jpg`,
       url: `${siteUrl}/`,
       sameAs: [appStoreUrl, googlePlayUrl, steamWishlistUrl],
@@ -35,16 +41,16 @@ const structuredData = {
     },
     {
       "@type": "SoftwareApplication",
-      name: "The Last Elf",
+      name: appStoreDisplayName,
       applicationCategory: "GameApplication",
-      operatingSystem: "iOS, Android",
+      operatingSystem: "iOS, iPadOS, macOS, Android",
       offers: {
         "@type": "Offer",
         price: "0",
         priceCurrency: "USD",
       },
       installUrl: googlePlayUrl,
-      downloadUrl: appStoreUrl,
+      downloadUrl: [appStoreUrl, macAppStoreUrl, googlePlayUrl],
     },
     {
       "@type": "FAQPage",
@@ -64,7 +70,7 @@ export default function Home() {
   return (
     <main className="min-h-screen bg-black pb-24 text-white selection:bg-neutral-700 selection:text-white sm:pb-28">
       <h1 className="sr-only">
-        The Last Elf: Offline Dark Fantasy Action RPG
+        The Last Elf: Dark Fantasy RPG
       </h1>
       <script
         type="application/ld+json"

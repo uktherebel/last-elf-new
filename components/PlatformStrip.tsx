@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { appStoreUrl, steamWishlistUrl } from "@/lib/store-links";
+import { appStoreUrl, macAppStoreUrl, steamWishlistUrl } from "@/lib/store-links";
 
 export default function PlatformStrip() {
     return (
@@ -24,9 +24,14 @@ export default function PlatformStrip() {
                     Wishlist on Steam
                 </a>
                 <span className="hidden w-1 h-1 bg-neutral-700 rounded-full sm:block" />
-                <span className="flex items-center gap-2 hover:text-white transition-colors cursor-pointer">
+                <a
+                    href={macAppStoreUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2 hover:text-white transition-colors"
+                >
                     Mac App Store
-                </span>
+                </a>
                 <span className="hidden w-1 h-1 bg-neutral-700 rounded-full sm:block" />
                 <span className="text-neutral-500">
                     Controller Supported

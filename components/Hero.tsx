@@ -3,7 +3,13 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { Youtube, Instagram, Facebook, Twitter } from "lucide-react";
-import { appStoreUrl, googlePlayUrl, steamWishlistUrl } from "@/lib/store-links";
+import {
+  appStoreDisplayName,
+  appStoreUrl,
+  googlePlayUrl,
+  macAppStoreUrl,
+  steamWishlistUrl,
+} from "@/lib/store-links";
 
 // Custom Brand Icons
 const DiscordIcon = ({ className }: { className?: string }) => (
@@ -196,6 +202,8 @@ export default function Hero() {
                   href={appStoreUrl}
                   target="_blank"
                   rel="noopener noreferrer"
+                  aria-label={`Download ${appStoreDisplayName} on the App Store`}
+                  title={`Download ${appStoreDisplayName} on the App Store`}
                   className="flex items-center justify-center gap-3 bg-white hover:bg-gray-100 border-2 border-black rounded-xl px-4 py-2 text-black transition-transform hover:scale-105 font-sans min-w-[170px]"
                 >
                   <Image
@@ -272,10 +280,16 @@ export default function Hero() {
               transition={{ duration: 0.5, delay: 0.6 }}
               className="flex items-center justify-center gap-8 md:gap-12 text-neutral-300"
             >
-              <span className="flex items-center gap-2 text-neutral-500 cursor-not-allowed group">
+              <a
+                href={macAppStoreUrl}
+                className="flex items-center gap-2 hover:text-white transition-colors cursor-pointer group"
+                target="_blank"
+                rel="noopener noreferrer"
+                title={`Download ${appStoreDisplayName} on Mac`}
+              >
                 <Image
                   src="/store-logos/app-store-svgrepo-com.svg"
-                  alt="macOS"
+                  alt="Mac App Store"
                   width={32}
                   height={32}
                   className="w-8 h-8 grayscale group-hover:grayscale-0 transition-all duration-300 group-hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.5)]"
@@ -283,12 +297,13 @@ export default function Hero() {
                 <span className="font-bold tracking-wider hidden sm:block">
                   macOS
                 </span>
-              </span>
+              </a>
               <a
                 href={appStoreUrl}
                 className="flex items-center gap-2 hover:text-white transition-colors cursor-pointer group"
                 target="_blank"
                 rel="noopener noreferrer"
+                title={`Download ${appStoreDisplayName} on iOS`}
               >
                 <Image
                   src="/store-logos/app-store-svgrepo-com.svg"

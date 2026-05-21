@@ -1,6 +1,11 @@
 import Link from "next/link";
 import Image from "next/image";
-import { appStoreUrl, googlePlayUrl, steamWishlistUrl } from "@/lib/store-links";
+import {
+  appStoreDisplayName,
+  appStoreUrl,
+  googlePlayUrl,
+  steamWishlistUrl,
+} from "@/lib/store-links";
 
 export default function Footer() {
   return (
@@ -14,6 +19,8 @@ export default function Footer() {
                 href={appStoreUrl}
                 target="_blank"
                 rel="noopener noreferrer"
+                aria-label={`Download ${appStoreDisplayName} on the App Store`}
+                title={`Download ${appStoreDisplayName} on the App Store`}
                 className="flex items-center justify-center gap-3 bg-white hover:bg-gray-100 border-2 border-black rounded-xl px-4 py-2 text-black transition-transform hover:scale-105 font-sans min-w-[170px]"
               >
                 <Image

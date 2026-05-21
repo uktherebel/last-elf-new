@@ -2,7 +2,12 @@ import Image from "next/image";
 import Link from "next/link";
 import { Laptop } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { appStoreUrl, googlePlayUrl, steamWishlistUrl } from "@/lib/store-links";
+import {
+  appStoreUrl,
+  googlePlayUrl,
+  macAppStoreUrl,
+  steamWishlistUrl,
+} from "@/lib/store-links";
 
 type DockItem = {
   name: string;
@@ -21,7 +26,7 @@ const dockItems: DockItem[] = [
   },
   {
     name: "macOS",
-    href: "/ios",
+    href: macAppStoreUrl,
     icon: "laptop",
     withoutBackground: true,
   },

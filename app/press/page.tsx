@@ -12,7 +12,6 @@ import {
   KeyRound,
   Mail,
   Map,
-  Monitor,
   Play,
   RadioTower,
   ScrollText,
@@ -27,12 +26,18 @@ import PressMediaCarousel, {
   type PressMediaItem,
 } from "@/components/PressMediaCarousel";
 import { Button } from "@/components/ui/button";
-import { appStoreUrl, googlePlayUrl, steamWishlistUrl } from "@/lib/store-links";
+import {
+  appStoreDisplayName,
+  appStoreUrl,
+  googlePlayUrl,
+  macAppStoreUrl,
+  steamWishlistUrl,
+} from "@/lib/store-links";
 
 export const metadata: Metadata = {
   title: "Press Kit",
   description:
-    "Press kit for The Last Elf, an offline third-person dark fantasy action RPG for Steam, macOS, iOS, and Android.",
+    "Press kit for The Last Elf: Dark Fantasy RPG, an offline third-person dark fantasy action RPG for iOS, iPadOS, Mac, Android, and Steam.",
   alternates: {
     canonical: "/press",
   },
@@ -186,13 +191,13 @@ const carouselItems: PressMediaItem[] = [
 ];
 
 const factSheet = [
-  ["Title", "The Last Elf"],
+  ["Title", appStoreDisplayName],
   ["Genre", "Third-Person Dark Fantasy Action RPG"],
-  ["Platforms", "Steam, macOS, iOS, Android"],
+  ["Platforms", "iOS, iPadOS, macOS, Android, Steam"],
   ["Mode", "Single-player"],
   ["Online Requirement", "Offline playable"],
   ["Developer / Publisher", "Content Arcade / Conteza Games"],
-  ["Release Status", "Available / Coming Soon (platform-dependent placeholder)"],
+  ["Release Status", "Available on iOS, iPadOS, Mac, and Android; Steam wishlist"],
   ["Website", "https://thelastelf.netlify.app"],
   ["Trailer", trailerUrl],
   ["Contact", pressEmail],
@@ -203,8 +208,8 @@ const steamStyleFacts = [
   ["Publisher", "Content Arcade / Conteza Games"],
   ["Mode", "Single-player"],
   ["Online", "Offline playable"],
-  ["Platforms", "Steam, macOS, iOS, Android"],
-  ["Release", "Available / Coming Soon"],
+  ["Platforms", "iOS, iPadOS, macOS, Android, Steam"],
+  ["Release", "Available on App Store and Google Play; Steam wishlist"],
 ];
 
 const tags = [
@@ -384,7 +389,7 @@ const storeLinks = [
   {
     label: "App Store",
     href: appStoreUrl,
-    note: "Download on iOS",
+    note: "Download on iOS and iPadOS",
     iconSrc: "/store-icons/Apple.svg",
     iconAlt: "Apple App Store",
     invertIcon: true,
@@ -397,11 +402,11 @@ const storeLinks = [
     iconAlt: "Google Play",
   },
   {
-    label: "macOS",
-    href: appStoreUrl,
-    note: "Available through Apple platforms",
+    label: "Mac App Store",
+    href: macAppStoreUrl,
+    note: "Download on Mac",
     iconSrc: "/store-icons/Apple.svg",
-    iconAlt: "Apple",
+    iconAlt: "Mac App Store",
     invertIcon: true,
   },
 ];
@@ -507,7 +512,7 @@ export default function PressPage() {
           </div>
 
           <h1 className="mb-5 text-4xl font-heading font-bold text-white md:text-6xl">
-            The Last Elf
+            The Last Elf: Dark Fantasy RPG
           </h1>
 
           <div className="grid gap-5 lg:grid-cols-[minmax(0,1.65fr)_minmax(330px,0.85fr)]">

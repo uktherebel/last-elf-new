@@ -8,7 +8,12 @@ import {
     Instagram,
     Monitor,
 } from "lucide-react";
-import { appStoreUrl, steamWishlistUrl } from "@/lib/store-links";
+import {
+    appStoreDisplayName,
+    appStoreUrl,
+    macAppStoreUrl,
+    steamWishlistUrl,
+} from "@/lib/store-links";
 
 const DiscordIcon = ({ className }: { className?: string }) => (
     <svg
@@ -89,8 +94,11 @@ export default function IosPage() {
 
                 <div className="text-center flex flex-col items-center gap-6">
                     <h2 className="text-3xl md:text-5xl font-heading font-bold text-white uppercase tracking-wider">
-                        iOS and macOS
+                        The Last Elf: Dark Fantasy RPG
                     </h2>
+                    <p className="max-w-2xl text-neutral-300">
+                        Now available on iOS, iPadOS, and Mac through the App Store.
+                    </p>
 
                     <motion.div
                         initial={{ opacity: 0, y: 10 }}
@@ -103,7 +111,7 @@ export default function IosPage() {
                             target="_blank"
                             rel="noopener noreferrer"
                             className="flex items-center gap-2 hover:text-white transition-colors"
-                            title="Download on iOS"
+                            title={`Download ${appStoreDisplayName} on iOS`}
                         >
                             <Image
                                 src="/store-icons/Apple.svg"
@@ -114,15 +122,18 @@ export default function IosPage() {
                             />
                             <span className="font-bold tracking-wider text-xl">iOS</span>
                         </a>
-                        <span
-                            className="flex items-center gap-2 opacity-50 cursor-not-allowed"
-                            title="macOS (not released yet)"
+                        <a
+                            href={macAppStoreUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="flex items-center gap-2 hover:text-white transition-colors"
+                            title={`Download ${appStoreDisplayName} on Mac`}
                         >
                             <Monitor className="w-8 h-8" />
                             <span className="font-bold tracking-wider text-xl">
                                 macOS
                             </span>
-                        </span>
+                        </a>
                         <a
                             href={steamWishlistUrl}
                             target="_blank"
@@ -234,8 +245,8 @@ export default function IosPage() {
                         </div>
 
                         <p className="text-white font-semibold">
-                            Download the Last Elf now to play and beat the demons from conquering the
-                            world!
+                            Download The Last Elf: Dark Fantasy RPG now on iOS, iPadOS, and Mac to
+                            beat the demons from conquering the world!
                         </p>
                     </div>
                 </section>

@@ -22,11 +22,11 @@ export const metadata: Metadata = {
     apple: "/RPGGame-Logo-Icon-MainMenu/logo-ios.png",
   },
   title: {
-    default: "The Last Elf | Offline Dark Fantasy Action RPG",
+    default: "The Last Elf: Dark Fantasy RPG | iOS, Mac, Android, Steam",
     template: `%s | ${siteName}`,
   },
   description:
-    "The Last Elf is an offline dark fantasy action RPG with story-driven adventure, sword combat, monster hunting, arena battles, and demon boss fights.",
+    "The Last Elf: Dark Fantasy RPG is an offline action RPG for iOS, Mac, Android, and Steam with story-driven adventure, sword combat, monster hunting, arena battles, and demon boss fights.",
   keywords: [
     "The Last Elf",
     "offline RPG",
@@ -37,6 +37,7 @@ export const metadata: Metadata = {
     "demon boss fights",
     "story-driven adventure game",
     "offline mobile RPG",
+    "Mac App Store RPG",
   ],
   alternates: {
     canonical: "/",
@@ -45,9 +46,9 @@ export const metadata: Metadata = {
     type: "website",
     url: "/",
     siteName,
-    title: "The Last Elf | Offline Dark Fantasy Action RPG",
+    title: "The Last Elf: Dark Fantasy RPG | iOS, Mac, Android, Steam",
     description:
-      "Play as the final elf in a ruined realm. Hunt monsters, master sword combat, and defeat powerful demon bosses.",
+      "Play The Last Elf: Dark Fantasy RPG on iOS, Mac, Android, and Steam. Hunt monsters, master sword combat, and defeat powerful demon bosses.",
     images: [
       {
         url: "/RPG-Game-Capsules-22-January-2026/MainCapsule.jpg",
@@ -59,9 +60,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "The Last Elf | Offline Dark Fantasy Action RPG",
+    title: "The Last Elf: Dark Fantasy RPG | iOS, Mac, Android, Steam",
     description:
-      "Offline dark fantasy RPG with sword combat, monster hunting, and demon boss battles.",
+      "Offline dark fantasy RPG for iOS, Mac, Android, and Steam with sword combat, monster hunting, and demon boss battles.",
     images: ["/RPG-Game-Capsules-22-January-2026/MainCapsule.jpg"],
   },
   verification: {
